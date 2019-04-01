@@ -13,12 +13,6 @@
         android:background="#03dac6"
         android:layout_margin="8dp">
 
-        <vector xmlns:android="http://schemas.android.com/apk/res/android"
-            android:width="match_parent"
-            android:height="160dp"
-            android:viewportWidth="360"
-            android:viewportHeight="185" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,29 +24,26 @@
             />
 
         <TextView
-            android:id="@+id/mini_decription"
+            android:id="@+id/mini_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="110dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="55dp"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:text="Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских, В.В. Романова и др. - Кемерово, 2014. - 226 с." />
-            
+
         <ImageView
             android:layout_width="78dp"
             android:layout_height="88dp"
-            android:viewportWidth="78"
-            android:viewportHeight="92"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="55dp"
             android:background="@drawable/book1"
-            />
-       
-        
-        
+            android:scaleType="centerCrop"
+            android:contentDescription="TODO" />
 
-        
+
+
     </RelativeLayout>
 
 </LinearLayout>

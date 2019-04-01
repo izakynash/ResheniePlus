@@ -12,9 +12,9 @@ class AllBooksActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_books)
     }
 
-    fun btnBook1(view: View) {
+   /* fun btnBook1(view: View) {
         val intent = Intent(this, Book1Activity::class.java)
         startActivity(intent)
-    }
+    }*/
 
 }

@@ -9,13 +9,13 @@ class Book1Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bzook1)
+        //setContentView(R.layout.activity_book1)
     }
 
-    fun btnSolved(view: View) {
+    /*fun btnSolved(view: View) {
         val intent = Intent(this, SolvedActivity::class.java)
         startActivity(intent)
-    }
+    }*/
 
 
 }
