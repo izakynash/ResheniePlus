@@ -4,46 +4,125 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e7e4e4"
+    android:orientation="vertical"
     tools:context=".AllBooksActivity">
 
     <RelativeLayout
         android:id="@+id/book1Layout"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="#03dac6"
-        android:layout_margin="8dp">
+        android:layout_height="160dp"
+        android:layout_margin="8dp"
+        android:background="#ffffff">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:text="Информатика: Теория, вычисления, программирование"
-            android:textSize="18sp"
-            />
+            android:textColor="#000000"
+            android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/mini_description"
+            android:id="@+id/tv1MiniDescription"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginStart="100dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="55dp"
-            android:textSize="14sp"
-            android:text="Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских, В.В. Романова и др. - Кемерово, 2014. - 226 с." />
+            android:layout_marginEnd="10dp"
+            android:text="Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских\nВ.В. Романова и др"
+            android:textSize="14sp" />
 
         <ImageView
+            android:id="@+id/iv1Picture"
             android:layout_width="78dp"
-            android:layout_height="88dp"
+            android:layout_height="100dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="55dp"
             android:background="@drawable/book1"
-            android:scaleType="centerCrop"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop" />
 
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/tv1MiniDescription"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="10dp"
+            android:autoLink="web"
+            android:text="Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"
+            android:textSize="11sp" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/book2Layout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_below="@id/book1Layout"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="Информатика. Программирование в системе Turbo  Pascal"
+            android:textColor="#000000"
+
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv2MiniDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="10dp"
+            android:text="Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv2Picture"
+            android:layout_width="78dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="55dp"
+            android:background="@drawable/book2"
+            android:contentDescription="TODO"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/tv2MiniDescription"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="10dp"
+            android:autoLink="web"
+            android:text="Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_done"
+            app:layout_anchor="@id/lvToDoList"
+            app:layout_anchorGravity="bottom|right|end" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
 </LinearLayout>
