@@ -9,7 +9,7 @@ class Book1Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_book1)
+        setContentView(R.layout.activity_bzook1)
     }
 
     fun btnSolved(view: View) {
