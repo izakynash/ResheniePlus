@@ -9,6 +9,12 @@
     android:orientation="vertical"
     tools:context=".AllBooksActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:title="Решение+"
+        app:titleTextColor=""/>
+
     <RelativeLayout
         android:id="@+id/book1Layout"
         android:layout_width="match_parent"
@@ -122,6 +128,7 @@
         app:backgroundTint="#018786"
         android:layout_gravity="bottom|right"
         android:src="@drawable/ic_plus_black_24dp"
+        app:rippleColor="@color/colorPrimaryDark"
         android:onClick="btnEditBook"/>
 
 </FrameLayout>
