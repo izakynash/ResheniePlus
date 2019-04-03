@@ -17,6 +17,11 @@ class AllBooksActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.all_books_menu, menu);
+        return super.onCreateOptionsMenu(menu)
+    }
+
     fun btnEditBook(view: View) {
         val intent = Intent(this, EditBookActivity::class.java)
         startActivity(intent)
