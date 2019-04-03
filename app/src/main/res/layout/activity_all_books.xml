@@ -114,24 +114,75 @@
             android:textSize="11sp" />
     </RelativeLayout>
 
-<FrameLayout
+    <RelativeLayout
+        android:id="@+id/book3Layout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv3NameBook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="Название книги"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv3MiniDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="10dp"
+            android:text="*краткое описание книги*"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/iv3Picture"
+            android:layout_width="78dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="55dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv3Link"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/tv3MiniDescription"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="10dp"
+            android:autoLink="web"
+            android:text="Электронная версия книги:\n"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+
+    <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1">
 
-    <android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         app:fabSize="normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:backgroundTint="#018786"
+        app:backgroundTint="#4DB6AC"
         android:layout_gravity="bottom|right"
         android:src="@drawable/ic_plus_black_24dp"
         app:rippleColor="@color/colorPrimaryDark"
         android:onClick="btnEditBook"/>
+    </FrameLayout>
 
-</FrameLayout>
 
 
 </LinearLayout>

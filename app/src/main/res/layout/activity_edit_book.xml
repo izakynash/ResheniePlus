@@ -66,6 +66,7 @@
         android:text="СОХРАНИТЬ"
         android:textSize="24sp"
         android:textColor="#ffffff"
+        android:onClick="btnSave"
         android:background="#018786" />
 
 </LinearLayout>
