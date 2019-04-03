@@ -76,7 +76,6 @@
             android:layout_marginRight="10dp"
             android:text="Информатика. Программирование в системе Turbo  Pascal"
             android:textColor="#000000"
-
             android:textSize="18sp" />
 
         <TextView
@@ -120,9 +119,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:backgroundTint="#EF5350"
+        app:backgroundTint="#018786"
         android:layout_gravity="bottom|right"
-        android:src="@drawable/ic_plus_black_24dp"/>
+        android:src="@drawable/ic_plus_black_24dp"
+        android:onClick="btnEditBook"/>
 
 </FrameLayout>
 

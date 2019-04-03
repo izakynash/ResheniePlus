@@ -20,7 +20,7 @@
             android:id="@+id/etNameBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Название учебника"
+            android:hint="Название учебника"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -36,7 +36,7 @@
             android:id="@+id/etDescribe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Краткое описание"
+            android:hint="Краткое описание"
             />
     </android.support.design.widget.TextInputLayout>
 
@@ -52,10 +52,21 @@
             android:id="@+id/etLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Электронная версия книги (ссылка)"
-            />
+            android:hint="Электронная версия книги (ссылка)" />
+
     </android.support.design.widget.TextInputLayout>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_gravity="center"
+        android:text="СОХРАНИТЬ"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        android:background="#018786" />
 
 
 
