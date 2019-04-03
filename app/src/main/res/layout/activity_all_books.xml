@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         style="@style/Toolbar"
         app:title="Решение+"
-        app:titleTextColor=""/>
+        app:titleTextColor="#ffffff"/>
 
     <RelativeLayout
         android:id="@+id/book1Layout"

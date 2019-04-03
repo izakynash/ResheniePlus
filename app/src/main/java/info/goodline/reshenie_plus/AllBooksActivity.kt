@@ -14,13 +14,8 @@ class AllBooksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_books)
-        setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar)
     }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.all_books_menu, menu)
-        return true
-}
 
     fun btnEditBook(view: View) {
         val intent = Intent(this, EditBookActivity::class.java)
