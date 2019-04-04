@@ -21,7 +21,6 @@ class AllBooksActivity : AppCompatActivity() {
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(toolbar)
         book3Layout.visibility = View.INVISIBLE
-
     }
 
     fun btnEditBook(view: View) {
