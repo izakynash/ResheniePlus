@@ -1,5 +1,6 @@
 package info.goodline.reshenie_plus
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
