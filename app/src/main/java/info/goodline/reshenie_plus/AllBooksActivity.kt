@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_all_books.*
 class AllBooksActivity : AppCompatActivity() {
 
    companion object {
-       const val REQUEST_CODE_BOOK = 2
+       const val REQUEST_CODE_EDIT_BOOK = 1
    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,24 +25,26 @@ class AllBooksActivity : AppCompatActivity() {
     }
 
     fun btnEditBook(view: View) {
-        val intent = Intent(this, EditBookActivity::class.java)
-        startActivityForResult(intent, REQUEST_CODE_BOOK)
+        val intent = Intent(this, EditBookActivity::class.java) // intent с явным указанием на активити
+        startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK) // после запуска активити требуется получить результат, поэтому ForResult
     }
 
+    // по завершении работы активити EditBook вернет результат через SetResult в метод onActivityResult():
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
+         // super.onActivityResult(requestCode, resultCode, data)
+        // по requestCode определяем, с какого активити пришел результат, в данный момент смысла не имеет
+        // в data приходит объект класса Intent
 
-            if(resultCode == Activity.RESULT_OK) {
+            if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_EDIT_BOOK) {
 
                 book3Layout.visibility = View.VISIBLE
 
-                val arguments = intent.extras ?: return
-                // похоже, приходит null (хз почему), поэтому здесь тело if завершается
-                val book = arguments.getParcelable<Books>("newBook") ?: return
+                // поля, переданные из PutExtra, читаются как объект типа Bundle, getParcelable - метод класса Bundle, вернет объект типа Books
+                val book = data?.extras?.getParcelable<Books>("newBook") // в объект book записываем поля, переданные через putExtra и извлеченные из Parcel
 
-                tv3NameBook.text = book.name
-                tv3MiniDescription.text = book.describe
-                tv3Link.text = book.link
+                tv3NameBook.text = book?.name
+                tv3MiniDescription.text = book?.describe
+                tv3Link.text = book?.link
             }
     }
 

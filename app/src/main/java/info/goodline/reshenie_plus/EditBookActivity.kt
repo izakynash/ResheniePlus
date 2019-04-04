@@ -16,11 +16,12 @@ class EditBookActivity: AppCompatActivity() {
     }
 
     fun btnSave(view: View) {
+        // вызывая конструктор Books, значения text из EditText присваеваем полям класса Books
         val books = Books (etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString())
-        val intent = Intent(this, AllBooksActivity::class.java)
+        val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
         intent.putExtra("newBook", books)
-        setResult(Activity.RESULT_OK)
-        finish()
+        setResult(Activity.RESULT_OK, intent)
+        finish() // завершает работу этой активити
     }
 }
 
