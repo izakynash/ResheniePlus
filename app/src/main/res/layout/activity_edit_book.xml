@@ -10,7 +10,7 @@
     tools:context=".EditBookActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbarEdit"
         style="@style/Toolbar"
         app:title="Добавить учебник"
         app:titleTextColor="#ffffff"/>

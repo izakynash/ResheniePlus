@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivity
 import android.view.Menu
 import android.view.View
+import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 class EditBookActivity: AppCompatActivity() {
@@ -14,12 +15,8 @@ class EditBookActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_book)
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.all_books_menu, menu)
-        return super.onCreateOptionsMenu(menu)
+        setSupportActionBar (toolbarEdit)
+        toolbarEdit.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
     }
 
     fun btnSave(view: View) {
@@ -30,5 +27,14 @@ class EditBookActivity: AppCompatActivity() {
         setResult(Activity.RESULT_OK, intent)
         finish() // завершает работу этой активити
     }
+
+
+
+
+//    toolbar.setNavigationIcon(R.drawable.my_icon);:
+//
+//    Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
+//    setSupportActionBar(toolbar);
+//    toolbar.setNavigationIcon(R.drawable.my_icon);
 }
 
