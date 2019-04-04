@@ -18,7 +18,7 @@ class EditBookActivity: AppCompatActivity() {
     fun btnSave(view: View) {
         val books = Books (etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString())
         val intent = Intent(this, AllBooksActivity::class.java)
-        intent.putExtra(EditBookActivity::class.java.simpleName, books)
+        intent.putExtra("newBook", books)
         setResult(Activity.RESULT_OK)
         finish()
     }

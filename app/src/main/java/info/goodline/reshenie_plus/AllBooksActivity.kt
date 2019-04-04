@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_all_books.*
 class AllBooksActivity : AppCompatActivity() {
 
    companion object {
-       const val REQUEST_CODE_BOOK = 1
+       const val REQUEST_CODE_BOOK = 2
    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class AllBooksActivity : AppCompatActivity() {
 
                 val arguments = intent.extras ?: return
                 // похоже, приходит null (хз почему), поэтому здесь тело if завершается
-                val book = arguments.getParcelable<Books>(EditBookActivity::class.java.simpleName) ?: return
+                val book = arguments.getParcelable<Books>("newBook") ?: return
 
                 tv3NameBook.text = book.name
                 tv3MiniDescription.text = book.describe
