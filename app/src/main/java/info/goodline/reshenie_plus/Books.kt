@@ -6,7 +6,7 @@ import android.os.Parcelable
 
 class Books (val name: String?, val describe: String?, val link: String?) : Parcelable {
 
-    constructor (`in`: Parcel): this (`in`.readString(),`in`.readString(),`in`.readString() )
+    constructor (`in`: Parcel): this (`in`.readString(),`in`.readString(),`in`.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)

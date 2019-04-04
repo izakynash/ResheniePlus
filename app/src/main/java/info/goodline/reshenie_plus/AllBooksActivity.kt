@@ -43,7 +43,7 @@ class AllBooksActivity : AppCompatActivity() {
 
                 tv3NameBook.text = book?.name
                 tv3MiniDescription.text = book?.describe
-                tv3Link.text = book?.link
+                tv3Link.text = "Электронная версия книги:\n ${book?.link}"
             }
     }
 
