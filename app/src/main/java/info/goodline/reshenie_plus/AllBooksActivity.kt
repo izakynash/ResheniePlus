@@ -31,11 +31,10 @@ class AllBooksActivity : AppCompatActivity() {
 
     // по завершении работы активити EditBook вернет результат через SetResult в метод onActivityResult():
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-         // super.onActivityResult(requestCode, resultCode, data)
         // по requestCode определяем, с какого активити пришел результат, в данный момент смысла не имеет
-        // в data приходит объект класса Intent
+        // в data приходит объект класса Intent, переданный через setResult
 
-            if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_EDIT_BOOK) {
+            if(resultCode == Activity.RESULT_OK && requestCode == 1) {
 
                 book3Layout.visibility = View.VISIBLE
 
