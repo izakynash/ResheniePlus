@@ -9,27 +9,17 @@
     tools:context=".AllBooksActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarСategory"
+        android:id="@+id/toolbarCategory"
         style="@style/Toolbar"
         app:title="Категории"
         app:titleTextColor="#ffffff"/>
 
-    <RelativeLayout
-        android:id="@+id/book1Layout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvLayout"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_margin="8dp"
-        android:background="#ffffff">
+        android:layout_height="wrap_content"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="10dp"
-            android:text="Информатика: Теория, вычисления, программирование"
-            android:textColor="#000000"
-            android:textSize="18sp" />
-    </RelativeLayout>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

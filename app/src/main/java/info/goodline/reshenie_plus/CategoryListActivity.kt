@@ -2,6 +2,7 @@ package info.goodline.reshenie_plus
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_all_books.*
@@ -13,8 +14,13 @@ class CategoryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
-        setSupportActionBar(toolbarСategory)
-        toolbarEdit.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
+        setSupportActionBar(toolbarCategory)
+        toolbarCategory.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
+
+        val category = CategoryData()
+
+        rvLayout.layoutManager = LinearLayoutManager (this)
+        rvLayout.adapter = BookAdapter(category.bookCategory)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

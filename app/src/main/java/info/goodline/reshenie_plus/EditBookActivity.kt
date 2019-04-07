@@ -29,7 +29,7 @@ class EditBookActivity: AppCompatActivity() {
     }
 
     fun btnSave(view: View) {
-        // вызывая конструктор Books, значения text из EditText присваеваем полям класса Books
+        // вызывая конструктор Books , значения text из EditText присваеваем полям класса Books
         val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString())
         val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
         intent.putExtra("newBook", books)
@@ -37,9 +37,9 @@ class EditBookActivity: AppCompatActivity() {
         finish() // завершает работу этой активити
     }
 
-    fun btnEditBook(view: View) {
+    fun btnCategory(view: View) {
         val intent = Intent(this, CategoryListActivity::class.java)
-        startActivityForResult(intent, REQUEST_CODE_CATEGORY) // после запуска активити требуется получить результат, поэтому ForResult
+        startActivity(intent) // после запуска активити требуется получить результат, поэтому ForResult
     }
 
 }
