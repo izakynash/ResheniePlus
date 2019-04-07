@@ -33,7 +33,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv1MiniDescription"
+            android:id="@+id/tv1Description"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_marginStart="100dp"
@@ -56,7 +56,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@id/tv1MiniDescription"
+            android:layout_below="@id/tv1Description"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="10dp"
             android:autoLink="web"
@@ -85,7 +85,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv2MiniDescription"
+            android:id="@+id/tv2Description"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_marginStart="100dp"
@@ -104,9 +104,10 @@
             android:scaleType="centerCrop" />
 
         <TextView
+            android:id="@+id/tv2Link"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@id/tv2MiniDescription"
+            android:layout_below="@id/tv2Description"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="10dp"
             android:autoLink="web"
@@ -135,7 +136,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/tv3MiniDescription"
+            android:id="@+id/tv3Description"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_marginStart="100dp"
@@ -156,7 +157,7 @@
             android:id="@+id/tv3Link"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_below="@id/tv3MiniDescription"
+            android:layout_below="@id/tv3Description"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="10dp"
             android:autoLink="web"

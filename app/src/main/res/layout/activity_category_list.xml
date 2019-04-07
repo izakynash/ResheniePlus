@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e7e4e4"
+    android:orientation="vertical"
+    tools:context=".AllBooksActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarСategory"
+        style="@style/Toolbar"
+        app:title="Категории"
+        app:titleTextColor="#ffffff"/>
+
+    <RelativeLayout
+        android:id="@+id/book1Layout"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_margin="8dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:text="Информатика: Теория, вычисления, программирование"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</LinearLayout>

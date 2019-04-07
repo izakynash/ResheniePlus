@@ -42,7 +42,7 @@ class AllBooksActivity : AppCompatActivity() {
                 val book = data?.extras?.getParcelable<Books>("newBook") // в объект book записываем поля, переданные через putExtra и извлеченные из Parcel
 
                 tv3NameBook.text = book?.name
-                tv3MiniDescription.text = book?.describe
+                tv3Description.text = book?.describe
                 tv3Link.text = "Электронная версия книги:\n ${book?.link}"
             }
     }

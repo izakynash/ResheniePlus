@@ -10,6 +10,11 @@ import kotlinx.android.synthetic.main.activity_edit_book.*
 
 class EditBookActivity: AppCompatActivity() {
 
+    companion object {
+        const val REQUEST_CODE_CATEGORY = 2
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_book)
@@ -26,11 +31,16 @@ class EditBookActivity: AppCompatActivity() {
     fun btnSave(view: View) {
         // вызывая конструктор Books, значения text из EditText присваеваем полям класса Books
         val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString())
-        val intent =
-            Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
+        val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
         intent.putExtra("newBook", books)
         setResult(Activity.RESULT_OK, intent)
         finish() // завершает работу этой активити
     }
+
+    fun btnEditBook(view: View) {
+        val intent = Intent(this, CategoryListActivity::class.java)
+        startActivityForResult(intent, REQUEST_CODE_CATEGORY) // после запуска активити требуется получить результат, поэтому ForResult
+    }
+
 }
 

@@ -56,6 +56,29 @@
         >
 
         <EditText
+            android:id="@+id/etCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Категория"
+            />
+
+        <Button
+            android:id="@+id/btnCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="в категории"
+            android:background="@color/colorPrimaryDark"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        >
+
+        <EditText
             android:id="@+id/etLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
