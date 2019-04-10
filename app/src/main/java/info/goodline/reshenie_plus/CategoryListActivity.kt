@@ -16,7 +16,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 
-val TAGer: String = "LOOK"
+val TAG: String = "LOOK"
 class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListener {
 
     override fun onItemClick(item: String) {
@@ -31,8 +31,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         setContentView(R.layout.activity_category_list)
         setSupportActionBar(toolbarCategory)
         toolbarCategory.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
-
-        Log.d(TAGer, "onCreate")
+        Log.d(TAG, "onCreate")
 
         val bookNameArray: List<String> = Arrays.asList(
             "Информатика", "Геометрия и инженерная графика"
@@ -69,6 +68,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         override fun getItemCount() = bookNameArray.size
 
         override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): BookVH {
+            Log.d(TAG, "onCreateViewHolder")
             val itemViewCategory = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_category, viewGroup, false)
             return BookVH(itemViewCategory)
         }
@@ -76,7 +76,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         override fun onBindViewHolder(bookVH: BookVH, position: Int) {
             val categoryName: String = bookNameArray[position]
             bookVH.tvCategoryVH?.text = categoryName
-            Log.d(TAGer, "onBindView")
+            Log.d(TAG, "onBindView")
 
             bookVH.itemView.setOnClickListener(View.OnClickListener() {
                 clickListener.onItemClick(categoryName)
