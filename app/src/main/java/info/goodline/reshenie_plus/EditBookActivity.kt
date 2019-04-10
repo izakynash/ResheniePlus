@@ -6,12 +6,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 class EditBookActivity: AppCompatActivity() {
 
     companion object {
-        const val REQUEST_CODE_CATEGORY = 2
+        const val REQUEST_CODE_CATEGORY = 1
     }
 
 
@@ -39,8 +40,20 @@ class EditBookActivity: AppCompatActivity() {
 
     fun btnCategory(view: View) {
         val intent = Intent(this, CategoryListActivity::class.java)
-        startActivity(intent) // после запуска активити требуется получить результат, поэтому ForResult
+        startActivityForResult(intent, EditBookActivity.REQUEST_CODE_CATEGORY)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        // по requestCode определяем, с какого активити пришел результат, в данный момент смысла не имеет
+        // в data приходит объект класса Intent, переданный через setResult
+
+        if(resultCode == Activity.RESULT_OK && requestCode == 1) {
+
+            // поля, переданные из PutExtra, читаются как объект типа Bundle, getParcelable - метод класса Bundle, вернет объект типа Books
+            val category = data?.extras?.get("addCategory").toString() // в объект book записываем поля, переданные через putExtra и извлеченные из Parcel
+
+            tvCategory.text = category
+        }
+    }
 }
 

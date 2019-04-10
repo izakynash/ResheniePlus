@@ -55,12 +55,13 @@
         android:layout_marginStart="15dp"
         >
 
-        <EditText
-            android:id="@+id/etCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Категория"
-            />
+       <TextView
+           android:id="@+id/tvCategory"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Категория"
+           android:textSize="18sp"/>
+
 
     </android.support.design.widget.TextInputLayout>
 
