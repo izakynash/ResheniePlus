@@ -25,23 +25,21 @@ class AllBooksActivity : AppCompatActivity() {
        const val REQUEST_CODE_EDIT_BOOK = 1
    }
 
-    val bookArray: List<Books> = Arrays.asList(
+    val booksArray: List<Books> = Arrays.asList(
         Books("Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских\nВ.В. Романова и др\"",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"),
         Books("Информатика. Программирование в системе Turbo  Pascal",
             "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"))
+            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(toolbar)
 
-//        val bookArray: List<Books> = Arrays.asList(Books("dsf", "sdfasgd", "sdfasdf"), Books("dsfdsf", "sdfsdf", "dsfsdafas"))
-
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(bookArray)
+        rvAllBooks.adapter = AllBookAdapter(booksArray)
 
         Log.d(TAGs, "onCreate")
 
@@ -56,20 +54,25 @@ class AllBooksActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             if(resultCode == Activity.RESULT_OK && requestCode == 1) {
+                Log.d(TAGs, "onActivityResult")
                 val book = data?.extras?.getParcelable<Books>("newBook")
 
-                val adapter = AllBookAdapter(bookArray)
-
+                val adapter = AllBookAdapter(booksArray)
                 adapter.insertItem(book)
+
             }
     }
 
     class AllBookAdapter(private val booksArray: List<Books?>): RecyclerView.Adapter<AllBooksVH>() {
 
         fun insertItem(item: Books?) {
-            val allBooks = AllBooksActivity()
-            allBooks.bookArray.plus(item)
-            notifyItemInserted(1)
+            Log.d(TAGs, "insertItem")
+            booksArray.plusElement(item)
+
+            Log.d(TAGs, "insertItem ${item?.name}")
+            Log.d(TAGs, "insertItem ${booksArray[1]?.link}")
+            notifyItemInserted(itemCount) // сообщить адаптеру, что данные изменились
+           // Log.d(TAGs, "itemCount = $itemCount")
         }
 
         override fun getItemCount() = booksArray.size
