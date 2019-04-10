@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_category_list.*
 import java.util.*
 
-val TAGs: String = "solo"
-
+val TAGs: String = "SOLO"
 
 class AllBooksActivity : AppCompatActivity() {
 
@@ -25,7 +24,7 @@ class AllBooksActivity : AppCompatActivity() {
        const val REQUEST_CODE_EDIT_BOOK = 1
    }
 
-    val booksArray: List<Books> = Arrays.asList(
+    var booksArray: List<Books?> = Arrays.asList(
         Books("Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских\nВ.В. Романова и др\"",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"),
@@ -51,29 +50,18 @@ class AllBooksActivity : AppCompatActivity() {
         startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK) // после запуска активити требуется получить результат, поэтому ForResult
     }
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             if(resultCode == Activity.RESULT_OK && requestCode == 1) {
                 Log.d(TAGs, "onActivityResult")
                 val book = data?.extras?.getParcelable<Books>("newBook")
 
-                val adapter = AllBookAdapter(booksArray)
-                adapter.insertItem(book)
+                booksArray = booksArray.plus(book)
 
+                rvAllBooks.adapter = AllBookAdapter(booksArray)
             }
     }
 
     class AllBookAdapter(private val booksArray: List<Books?>): RecyclerView.Adapter<AllBooksVH>() {
-
-        fun insertItem(item: Books?) {
-            Log.d(TAGs, "insertItem")
-            booksArray.plusElement(item)
-
-            Log.d(TAGs, "insertItem ${item?.name}")
-            Log.d(TAGs, "insertItem ${booksArray[1]?.link}")
-            notifyItemInserted(itemCount) // сообщить адаптеру, что данные изменились
-           // Log.d(TAGs, "itemCount = $itemCount")
-        }
 
         override fun getItemCount() = booksArray.size
 
