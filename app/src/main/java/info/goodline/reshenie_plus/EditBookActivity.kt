@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_all_books.*
@@ -44,15 +45,12 @@ class EditBookActivity: AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        // по requestCode определяем, с какого активити пришел результат, в данный момент смысла не имеет
-        // в data приходит объект класса Intent, переданный через setResult
 
         if(resultCode == Activity.RESULT_OK && requestCode == 1) {
 
-            // поля, переданные из PutExtra, читаются как объект типа Bundle, getParcelable - метод класса Bundle, вернет объект типа Books
-            val category = data?.extras?.get("addCategory").toString() // в объект book записываем поля, переданные через putExtra и извлеченные из Parcel
+            val category = data?.extras?.get("addCategory").toString()
 
-            tvCategory.text = category
+            etCategory.setText(category)
         }
     }
 }

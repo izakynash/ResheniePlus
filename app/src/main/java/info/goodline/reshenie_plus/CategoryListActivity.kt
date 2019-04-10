@@ -26,19 +26,6 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         finish() // завершает работу этой активити
     }
 
-
-
-//       // Toast.makeText(this, item, Toast.LENGTH_LONG).show()
-//        Log.d(TAGer, "onItemClick")
-//    }
-//
-//    val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString())
-//    val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
-//    intent.putExtra("newBook", books)
-//    setResult(Activity.RESULT_OK, intent)
-//    finish() // завершает работу этой активити
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
