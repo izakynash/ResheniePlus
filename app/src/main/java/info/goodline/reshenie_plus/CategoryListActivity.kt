@@ -8,13 +8,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_category_list.*
-import kotlinx.android.synthetic.main.activity_edit_book.*
 import java.util.*
 import android.content.Intent
 import android.util.Log
-import android.widget.Toast
 
 val TAG: String = "LOOK"
 class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListener {
