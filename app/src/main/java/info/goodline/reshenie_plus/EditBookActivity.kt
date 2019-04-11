@@ -47,9 +47,7 @@ class EditBookActivity: AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if(resultCode == Activity.RESULT_OK && requestCode == 1) {
-
             val category = data?.extras?.get("addCategory").toString()
-
             etCategory.setText(category)
         }
     }

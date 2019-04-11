@@ -12,6 +12,7 @@ class Books (val name: String?, val describe: String?, val link: String?) : Parc
         parcel.writeString(name)
         parcel.writeString(describe)
         parcel.writeString(link)
+        //parcel.writeInt(image)
     }
 
     override fun describeContents(): Int {

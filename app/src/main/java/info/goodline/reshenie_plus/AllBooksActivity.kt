@@ -53,7 +53,7 @@ class AllBooksActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
             if(resultCode == Activity.RESULT_OK && requestCode == 1) {
                 Log.d(TAGs, "onActivityResult")
-                val book = data?.extras?.getParcelable<Books>("newBook")
+                val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
                 booksArray = booksArray.plus(book)
 
@@ -77,8 +77,9 @@ class AllBooksActivity : AppCompatActivity() {
             allBooksVH.tvNameBookVH?.text = book?.name
             allBooksVH.tvDescribeVH?.text = book?.describe
             allBooksVH.tvLinkVH?.text = book?.link
+            // allBooksVH.ivImageVH?.setImageResource(idImage)
 
-                Log.d(TAGs, "onBindView")
+            Log.d(TAGs, "onBindView")
         }
     }
 
@@ -86,12 +87,12 @@ class AllBooksActivity : AppCompatActivity() {
         var tvNameBookVH: TextView? = null
         var tvDescribeVH: TextView? = null
         var tvLinkVH: TextView? = null
-       // var ivImageVH: ImageView? = null
+//        var ivImageVH: ImageView? = null
         init {
             tvNameBookVH = itemViewBooks?.findViewById(R.id.tvNameBook)
             tvDescribeVH = itemViewBooks?.findViewById(R.id.tvDescribe)
             tvLinkVH = itemViewBooks?.findViewById(R.id.tvLink)
-          //  ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
+  //          ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
         }
     }
 
