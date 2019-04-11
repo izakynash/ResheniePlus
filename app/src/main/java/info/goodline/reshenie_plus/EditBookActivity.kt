@@ -16,7 +16,6 @@ class EditBookActivity: AppCompatActivity() {
         const val REQUEST_CODE_CATEGORY = 1
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_book)

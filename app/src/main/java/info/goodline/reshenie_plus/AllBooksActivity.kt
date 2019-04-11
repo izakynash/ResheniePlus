@@ -41,8 +41,6 @@ class AllBooksActivity : AppCompatActivity() {
         rvAllBooks.adapter = AllBookAdapter(booksArray)
 
         Log.d(TAGs, "onCreate")
-
-        // book3Layout.visibility = View.INVISIBLE
     }
 
     fun btnEditBook(view: View) {
@@ -56,7 +54,6 @@ class AllBooksActivity : AppCompatActivity() {
                 val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
                 booksArray = booksArray.plus(book)
-
                 rvAllBooks.adapter = AllBookAdapter(booksArray)
             }
     }
