@@ -1,6 +1,7 @@
 package info.goodline.reshenie_plus
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -57,7 +58,7 @@ class AllBooksActivity : AppCompatActivity() {
             }
     }
 
-    class AllBookAdapter(private val booksArray: List<Books?>): RecyclerView.Adapter<AllBooksVH>() {
+    class AllBookAdapter(private var booksArray: List<Books?>): RecyclerView.Adapter<AllBooksVH>() {
 
         override fun getItemCount() = booksArray.size
 
