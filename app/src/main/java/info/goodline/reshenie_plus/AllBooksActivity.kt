@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
+import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
@@ -23,10 +24,12 @@ class AllBooksActivity : AppCompatActivity() {
     var booksArray: List<Books?> = Arrays.asList(
         Books("Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских\nВ.В. Романова и др\"",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf"),
+            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
+            R.drawable.book1),
         Books("Информатика. Программирование в системе Turbo  Pascal",
             "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf"))
+            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
+            R.drawable.book2))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,7 +73,9 @@ class AllBooksActivity : AppCompatActivity() {
             allBooksVH.tvNameBookVH?.text = book?.name
             allBooksVH.tvDescribeVH?.text = book?.describe
             allBooksVH.tvLinkVH?.text = book?.link
-            // allBooksVH.ivImageVH?.setImageResource(idImage)
+            // временно на новые книжки ставим общую рабочую картинку:
+            if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
+            else allBooksVH.ivImageVH?.setImageResource(book?.image!!)
 
             Log.d(TAGs, "onBindView")
         }
@@ -80,12 +85,12 @@ class AllBooksActivity : AppCompatActivity() {
         var tvNameBookVH: TextView? = null
         var tvDescribeVH: TextView? = null
         var tvLinkVH: TextView? = null
-//        var ivImageVH: ImageView? = null
+        var ivImageVH: ImageView? = null
         init {
             tvNameBookVH = itemViewBooks?.findViewById(R.id.tvNameBook)
             tvDescribeVH = itemViewBooks?.findViewById(R.id.tvDescribe)
             tvLinkVH = itemViewBooks?.findViewById(R.id.tvLink)
-  //          ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
+            ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
         }
     }
 
