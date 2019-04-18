@@ -10,14 +10,14 @@ import java.util.*
 import android.content.Intent
 import android.util.Log
 
-val TAG: String = "LOOK"
+const val TAG = "LOOK"
 class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListener {
 
     override fun onItemClick(item: String) {
         val intent = Intent()
         intent.putExtra("addCategory", item)
         setResult(Activity.RESULT_OK, intent)
-        finish() // завершает работу этой активити
+        finish()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +52,3 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         return super.onCreateOptionsMenu(menu)
     }
 }
-
-//Далее создаем переменную, в которую будем сетить Activity, реализующую обработку нажатий.
-// Таким образом, обработкой нажатий будет заниматься не адаптер, а Activity.
-// Сетить эту переменную будем через первичный конструктор адаптера
-
-// создает новые объекты ViewHolder, сколько потребуется
-
-// наполняет представления из ViewHolder
-// В этом же адаптере мы должны повесить обработчик нажатий на элементы списка.
-
-//        Теперь нам надо написать реализацию обработки кликов на элементы в нашей Activity.
-//        Для начала заимплементим интерфейс из адаптера

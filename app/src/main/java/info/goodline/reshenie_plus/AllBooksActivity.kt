@@ -47,10 +47,7 @@ class AllBooksActivity : AppCompatActivity() {
 
     fun btnEditBook(view: View) {
         val intent = Intent(this, EditBookActivity::class.java) // intent с явным указанием на активити
-        startActivityForResult(
-            intent,
-            REQUEST_CODE_EDIT_BOOK
-        ) // после запуска активити требуется получить результат, поэтому ForResult
+        startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

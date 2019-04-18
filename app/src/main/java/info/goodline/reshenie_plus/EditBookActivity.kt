@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 
@@ -23,20 +25,22 @@ class EditBookActivity: AppCompatActivity() {
         toolbarEdit.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
     }
 
-    // "Когда пользователь выбирает пункт меню параметров, система вызывает метод onOptionsItemSelected()"
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) finish()
         return super.onOptionsItemSelected(item)
     }
 
     fun btnSave(view: View) {
-        // вызывая конструктор Books , значения text из EditText присваеваем полям класса Books
-        val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString(), null)
-        val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
-        intent.putExtra("newBook", books)
-        setResult(Activity.RESULT_OK, intent)
-        Log.d(TAG, "btnSave")
-        finish() // завершает работу этой активити
+        if (etNameBook.text.toString() == "" || etDescribe.text.toString() == ""  || etLink.text.toString() == "" || etCategory.text.toString() == "")
+            Toast.makeText(this, "Заполнены не все поля", LENGTH_SHORT).show()
+        else {
+            val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString(), null)
+            val intent = Intent()
+            intent.putExtra("newBook", books)
+            setResult(Activity.RESULT_OK, intent)
+            Log.d(TAG, "btnSave")
+            finish()
+        }
     }
 
     fun btnCategory(view: View) {
@@ -45,7 +49,6 @@ class EditBookActivity: AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
         if(resultCode == Activity.RESULT_OK && requestCode == 1) {
             val category = data?.extras?.get("addCategory").toString()
             etCategory.setText(category)
