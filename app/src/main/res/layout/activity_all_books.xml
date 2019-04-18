@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e7e4e4"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".AllBooksActivity">
 
@@ -13,8 +13,11 @@
         android:id="@+id/toolbar"
         style="@style/Toolbar"
         app:title="Решение+"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="#ffffff"/>
+        app:titleTextColor="#000000"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvAllBooks"
@@ -24,17 +27,17 @@
 
         <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        app:fabSize="normal"
+        app:fabSize="auto"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_margin="16dp"
             android:clickable="true"
             android:focusable="true"
-        app:backgroundTint="#4DB6AC"
+        app:backgroundTint="#000000"
             android:scaleType="centerCrop"
         android:layout_gravity="bottom|right"
-        android:src="@drawable/ic_plus_black_24dp"
-        app:rippleColor="@color/colorPrimaryDark"
+        android:src="@drawable/ic_add_black_24dp"
+        app:rippleColor="#484848"
         android:onClick="btnEditBook"/>
 
 </FrameLayout>

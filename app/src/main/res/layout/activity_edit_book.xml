@@ -5,15 +5,16 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e7e4e4"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".EditBookActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarEdit"
         style="@style/Toolbar"
-        app:title="Добавить учебник"
-        app:titleTextColor="#ffffff"/>
+        app:title="Добавить книгу"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#000000"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -119,14 +120,15 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_gravity="center"
         android:text="СОХРАНИТЬ"
-        android:textSize="24sp"
-        android:textColor="#ffffff"
+        android:textSize="28sp"
+        android:textColor="#000000"
         android:onClick="btnSave"
-        android:background="#018786" />
+        android:background="@drawable/border_shadow"
+        />
 
 </LinearLayout>

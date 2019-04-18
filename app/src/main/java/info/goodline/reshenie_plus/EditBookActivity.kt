@@ -22,7 +22,7 @@ class EditBookActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_book)
         setSupportActionBar(toolbarEdit)
-        toolbarEdit.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
+        toolbarEdit.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

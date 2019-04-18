@@ -24,7 +24,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_list)
         setSupportActionBar(toolbarCategory)
-        toolbarCategory.setNavigationIcon(R.drawable.baseline_keyboard_backspace_white_24)
+        toolbarCategory.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         Log.d(TAG, "onCreate")
 
         val bookNameArray: List<String> = Arrays.asList(

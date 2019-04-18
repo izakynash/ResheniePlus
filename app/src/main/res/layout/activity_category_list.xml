@@ -4,18 +4,21 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e7e4e4"
+    android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".AllBooksActivity">
+    tools:context=".CategoryListActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarCategory"
         style="@style/Toolbar"
-        app:title="Категории"
-        app:titleTextColor="#ffffff"/>
+        app:title="Выбрать категорию"
+        android:layout_marginRight="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#000000"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvLayout"
+        android:layout_marginRight="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
