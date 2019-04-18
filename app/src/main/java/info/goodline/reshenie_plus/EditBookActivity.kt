@@ -35,7 +35,7 @@ class EditBookActivity: AppCompatActivity() {
         val intent = Intent() // можно не указывать активити для запуска, setResult вернет объект intent в AllBooks (потому что startActivityForResult)
         intent.putExtra("newBook", books)
         setResult(Activity.RESULT_OK, intent)
-        Log.d(TAGs, "btnSave")
+        Log.d(TAG, "btnSave")
         finish() // завершает работу этой активити
     }
 

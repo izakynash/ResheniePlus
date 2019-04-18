@@ -1,13 +1,10 @@
 package info.goodline.reshenie_plus
 
 import android.app.Activity
-import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.*
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_category_list.*
 import java.util.*
 import android.content.Intent
@@ -55,39 +52,6 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         return super.onCreateOptionsMenu(menu)
     }
 }
-
-    class BookAdapter(private val bookNameArray: List<String>, private val clickListener: onItemClickListener): RecyclerView.Adapter<BookVH>() {
-
-        interface onItemClickListener {
-            fun onItemClick(item: String)
-        }
-
-        override fun getItemCount() = bookNameArray.size
-
-        override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): BookVH {
-            Log.d(TAG, "onCreateViewHolder")
-            val itemViewCategory = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_category, viewGroup, false)
-            return BookVH(itemViewCategory)
-        }
-
-        override fun onBindViewHolder(bookVH: BookVH, position: Int) {
-            val categoryName: String = bookNameArray[position]
-            bookVH.tvCategoryVH?.text = categoryName
-            Log.d(TAG, "onBindView")
-
-            bookVH.itemView.setOnClickListener(View.OnClickListener() {
-                clickListener.onItemClick(categoryName)
-            } )
-        }
-    }
-
-        class BookVH (itemViewCategory: View?): RecyclerView.ViewHolder(itemViewCategory) {
-            var tvCategoryVH: TextView? = null
-            init {
-                tvCategoryVH = itemViewCategory?.findViewById(R.id.tvNameCategory)
-            }
-        }
-
 
 //Далее создаем переменную, в которую будем сетить Activity, реализующую обработку нажатий.
 // Таким образом, обработкой нажатий будет заниматься не адаптер, а Activity.

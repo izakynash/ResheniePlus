@@ -1,36 +1,38 @@
 package info.goodline.reshenie_plus
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
-import android.widget.ImageView
-import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
 
-val TAGs: String = "SOLO"
 
 class AllBooksActivity : AppCompatActivity() {
 
-   companion object {
-       const val REQUEST_CODE_EDIT_BOOK = 1
-   }
+    private val TAG: String = "SOLO"
+
+    companion object {
+        const val REQUEST_CODE_EDIT_BOOK = 1
+    }
 
     var booksArray: List<Books?> = Arrays.asList(
-        Books("Информатика: Теория, вычисления, программирование",
+        Books(
+            "Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских\nВ.В. Романова и др\"",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
-            R.drawable.book1),
-        Books("Информатика. Программирование в системе Turbo  Pascal",
+            R.drawable.book1
+        ),
+        Books(
+            "Информатика. Программирование в системе Turbo  Pascal",
             "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
-            R.drawable.book2))
+            R.drawable.book2
+        )
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,58 +42,24 @@ class AllBooksActivity : AppCompatActivity() {
         rvAllBooks.layoutManager = LinearLayoutManager(this)
         rvAllBooks.adapter = AllBookAdapter(booksArray)
 
-        Log.d(TAGs, "onCreate")
+        Log.d(TAG, "onCreate")
     }
 
     fun btnEditBook(view: View) {
         val intent = Intent(this, EditBookActivity::class.java) // intent с явным указанием на активити
-        startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK) // после запуска активити требуется получить результат, поэтому ForResult
+        startActivityForResult(
+            intent,
+            REQUEST_CODE_EDIT_BOOK
+        ) // после запуска активити требуется получить результат, поэтому ForResult
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            if(resultCode == Activity.RESULT_OK && requestCode == 1) {
-                Log.d(TAGs, "onActivityResult")
-                val book: Books? = data?.extras?.getParcelable<Books>("newBook")
+        if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+            Log.d(TAG, "onActivityResult")
+            val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
-                booksArray = booksArray.plus(book)
-                rvAllBooks.adapter = AllBookAdapter(booksArray)
-            }
-    }
-
-    class AllBookAdapter(private var booksArray: List<Books?>): RecyclerView.Adapter<AllBooksVH>() {
-
-        override fun getItemCount() = booksArray.size
-
-        override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): AllBooksVH {
-            Log.d(TAGs, "onCreateViewHolder")
-            val itemViewBooks = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_books, viewGroup, false)
-            return AllBooksVH(itemViewBooks)
-        }
-
-        override fun onBindViewHolder(allBooksVH: AllBooksVH, position: Int) {
-            val book: Books? = booksArray[position]
-
-            allBooksVH.tvNameBookVH?.text = book?.name
-            allBooksVH.tvDescribeVH?.text = book?.describe
-            allBooksVH.tvLinkVH?.text = book?.link
-            // временно на новые книжки ставим общую рабочую картинку:
-            if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
-            else allBooksVH.ivImageVH?.setImageResource(book?.image!!)
-
-            Log.d(TAGs, "onBindView")
-        }
-    }
-
-    class AllBooksVH (itemViewBooks: View?): RecyclerView.ViewHolder(itemViewBooks) {
-        var tvNameBookVH: TextView? = null
-        var tvDescribeVH: TextView? = null
-        var tvLinkVH: TextView? = null
-        var ivImageVH: ImageView? = null
-        init {
-            tvNameBookVH = itemViewBooks?.findViewById(R.id.tvNameBook)
-            tvDescribeVH = itemViewBooks?.findViewById(R.id.tvDescribe)
-            tvLinkVH = itemViewBooks?.findViewById(R.id.tvLink)
-            ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
+            booksArray = booksArray.plus(book)
+            rvAllBooks.adapter = AllBookAdapter(booksArray)
         }
     }
 
@@ -99,5 +67,5 @@ class AllBooksActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.all_books_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
 }
+
