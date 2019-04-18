@@ -1,51 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:layout_margin="8dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginTop="8dp"
+    android:orientation="vertical"
     android:background="#ffffff">
 
     <TextView
         android:id="@+id/tvNameBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
         android:text="Название книжки"
         android:textColor="#000000"
-        android:textSize="18sp" />
+        android:textSize="20sp"
+        android:lineSpacingMultiplier="1.15"/>
+
+    <View
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#e7e4e4" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        >
 
     <TextView
         android:id="@+id/tvDescribe"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="10dp"
-        android:text="Описание"
-        android:textSize="14sp" />
+        android:layout_toRightOf="@id/ivImage"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:text="Описание dsfsdgsdgg dsfgfhfghfgdhfdghfgh ghfghfghfgh fghfdgh"
+        android:textSize="14sp"
+        android:lineSpacingMultiplier="1.25" />
 
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_width="78dp"
+        android:layout_width="70dp"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="55dp"
-
         android:contentDescription="TODO"
         android:scaleType="centerCrop" />
-
 
     <TextView
         android:id="@+id/tvLink"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@id/tvDescribe"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="10dp"
+        android:layout_toRightOf="@id/ivImage"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="12dp"
         android:autoLink="web"
+        android:linksClickable="true"
         android:text="Ссылка на электронный вариант"
-        android:textSize="11sp" />
+        android:lineSpacingMultiplier="1.1"
+        android:textSize="12sp" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
