@@ -16,9 +16,13 @@
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#000000"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c7c7c7"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvLayout"
-        android:layout_marginRight="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
