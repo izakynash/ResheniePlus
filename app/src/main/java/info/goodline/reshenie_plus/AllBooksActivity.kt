@@ -10,10 +10,15 @@ import android.view.*
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
 
+const val TAG = "LOOK"
+class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-class AllBooksActivity : AppCompatActivity() {
-
-    private val TAG: String = "SOLO"
+    override fun onItemClick(nameItem: String?) {
+        Log.d(TAG, "AllBooks_onItemClick")
+        val intent = Intent(this, ChapterActivity::class.java)
+        intent.putExtra("nameBook", nameItem)
+        startActivity(intent)
+    }
 
     companion object {
         const val REQUEST_CODE_EDIT_BOOK = 1
@@ -37,16 +42,16 @@ class AllBooksActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_books)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(tbAllBooks)
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(booksArray)
+        rvAllBooks.adapter = AllBookAdapter(booksArray, this)
 
         Log.d(TAG, "onCreate")
     }
 
     fun btnEditBook(view: View) {
-        val intent = Intent(this, EditBookActivity::class.java) // intent с явным указанием на активити
+        val intent = Intent(this, EditBookActivity::class.java)
         startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK)
     }
 
@@ -56,12 +61,12 @@ class AllBooksActivity : AppCompatActivity() {
             val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
             booksArray = booksArray.plus(book)
-            rvAllBooks.adapter = AllBookAdapter(booksArray)
+            rvAllBooks.adapter = AllBookAdapter(booksArray, this)
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.all_books_menu, menu)
+        menuInflater.inflate(R.menu.menu_with_account, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

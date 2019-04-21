@@ -10,7 +10,7 @@
     tools:context=".AllBooksActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/tbAllBooks"
         style="@style/Toolbar"
         app:title="Решение+"
         android:layout_marginLeft="8dp"

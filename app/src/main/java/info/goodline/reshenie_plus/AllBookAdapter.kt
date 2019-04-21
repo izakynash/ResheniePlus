@@ -8,7 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class AllBookAdapter(private var booksArray: List<Books?>): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+class AllBookAdapter(private var booksArray: List<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+
+    interface onItemClickListener {
+        fun onItemClick(nameItem: String?)
+    }
 
     override fun getItemCount() = booksArray.size
 
@@ -29,7 +33,11 @@ class AllBookAdapter(private var booksArray: List<Books?>): RecyclerView.Adapter
         if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
         else allBooksVH.ivImageVH?.setImageResource(book?.image!!)
 
-        Log.d(TAG, "onBindView")
+        allBooksVH.itemView.setOnClickListener {
+            clickListener.onItemClick(book?.name)
+        }
+
+        Log.d(TAG, "AllBook_onBindView")
     }
 
 

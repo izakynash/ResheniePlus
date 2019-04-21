@@ -10,8 +10,7 @@ import java.util.*
 import android.content.Intent
 import android.util.Log
 
-const val TAG = "LOOK"
-class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListener {
+class CategoryListActivity : AppCompatActivity(), CategoryAdapter.onItemClickListener {
 
     override fun onItemClick(item: String) {
         val intent = Intent()
@@ -32,7 +31,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
         )
 
         rvLayout.layoutManager = LinearLayoutManager(this)
-        rvLayout.adapter = BookAdapter(bookNameArray, this)
+        rvLayout.adapter = CategoryAdapter(bookNameArray, this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -48,7 +47,7 @@ class CategoryListActivity : AppCompatActivity(), BookAdapter.onItemClickListene
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.category_menu, menu)
+        menuInflater.inflate(R.menu.menu_with_account, menu)
         return super.onCreateOptionsMenu(menu)
     }
 }

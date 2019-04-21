@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:layout_marginStart="12dp"
     android:layout_marginEnd="12dp"
+    android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".CategoryListActivity">
+    tools:context=".ChapterActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarCategory"
+        android:id="@+id/tbChapter"
         style="@style/Toolbar"
-        app:title="Выбрать категорию"
-        android:layout_marginRight="4dp"
+        app:title="Выберите раздел"
+        android:layout_marginEnd="4dp"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#000000"/>
 
@@ -23,8 +23,25 @@
         android:layout_height="1dp"
         android:background="#c7c7c7"/>
 
+    <TextView
+        android:id="@+id/tvNameBookUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12sp"
+        android:text="название книжки"
+        android:lineSpacingMultiplier="1.4"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c7c7c7"/>
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvLayout"
+        android:id="@+id/rvChapter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
