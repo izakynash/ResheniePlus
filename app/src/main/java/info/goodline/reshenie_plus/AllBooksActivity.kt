@@ -13,6 +13,7 @@ import java.util.*
 const val TAG = "LOOK"
 class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
+
     override fun onItemClick(nameItem: String?) {
         Log.d(TAG, "AllBooks_onItemClick")
         val intent = Intent(this, ChapterActivity::class.java)

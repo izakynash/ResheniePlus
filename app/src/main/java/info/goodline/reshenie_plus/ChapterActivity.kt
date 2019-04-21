@@ -10,15 +10,17 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_chapter.*
 import java.util.*
 
-class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener {
+class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
     private val chapterNameArray: List<String> = Arrays.asList(
         "раздел 1", "раздел 2", "раздел 3"
     )
 
-    override fun onItemClick(item: String) {
-        val intent = Intent(this, EditBookActivity::class.java) // исправить на таск активити
-        intent.putExtra("nameChapter", item)
+    override fun onItemClick(nameItem: String?) {
+        val intent = Intent(this, TaskActivity::class.java)
+        intent.putExtra("nameBook", tvNameBookUp.text.toString())
+        intent.putExtra("nameChapter", nameItem)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

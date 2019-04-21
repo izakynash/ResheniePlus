@@ -7,11 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-class CategoryAdapter(private val bookNameArray: List<String>, private val clickListener: onItemClickListener): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
-
-    interface onItemClickListener {
-        fun onItemClick(item: String)
-    }
+class CategoryAdapter(private val bookNameArray: List<String>, private val clickListener: CategoryListActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
 
     override fun getItemCount() = bookNameArray.size
 

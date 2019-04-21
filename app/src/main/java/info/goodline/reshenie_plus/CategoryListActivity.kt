@@ -10,9 +10,12 @@ import java.util.*
 import android.content.Intent
 import android.util.Log
 
-class CategoryListActivity : AppCompatActivity(), CategoryAdapter.onItemClickListener {
+class CategoryListActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-    override fun onItemClick(item: String) {
+    private val bookNameArray: List<String> = Arrays.asList(
+        "Информатика", "Геометрия и инженерная графика"
+    )
+    override fun onItemClick(item: String?) {
         val intent = Intent()
         intent.putExtra("addCategory", item)
         setResult(Activity.RESULT_OK, intent)
@@ -26,9 +29,6 @@ class CategoryListActivity : AppCompatActivity(), CategoryAdapter.onItemClickLis
         toolbarCategory.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         Log.d(TAG, "onCreate")
 
-        val bookNameArray: List<String> = Arrays.asList(
-            "Информатика", "Геометрия и инженерная графика"
-        )
 
         rvLayout.layoutManager = LinearLayoutManager(this)
         rvLayout.adapter = CategoryAdapter(bookNameArray, this)
