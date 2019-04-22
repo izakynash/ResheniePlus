@@ -6,10 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import info.goodline.reshenie_plus.models.Category
 
-class CategoryAdapter(private val bookNameArray: List<String>, private val clickListener: CategoryListActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
+class CategoryAdapter(private val categoryList: MutableList<Category>, private val clickListener: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
 
-    override fun getItemCount() = bookNameArray.size
+    override fun getItemCount() = categoryList.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): BookVH {
         Log.d(TAG, "Category_onCreateViewHolder")
@@ -19,12 +20,12 @@ class CategoryAdapter(private val bookNameArray: List<String>, private val click
     }
 
     override fun onBindViewHolder(bookVH: BookVH, position: Int) {
-        val categoryName: String = bookNameArray[position]
-        bookVH.tvCategoryVH?.text = categoryName
+        val categoryName = categoryList[position]
+        bookVH.tvCategoryVH?.text = categoryName.name
         Log.d(TAG, "Category_onBindView")
 
         bookVH.itemView.setOnClickListener {
-            clickListener.onItemClick(categoryName)
+            clickListener.onItemClick(categoryName.name)
         }
     }
 

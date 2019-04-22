@@ -44,7 +44,7 @@ class EditBookActivity: AppCompatActivity() {
     }
 
     fun btnCategory(view: View) {
-        val intent = Intent(this, CategoryListActivity::class.java)
+        val intent = Intent(this, CategoryActivity::class.java)
         startActivityForResult(intent, EditBookActivity.REQUEST_CODE_CATEGORY)
     }
 
