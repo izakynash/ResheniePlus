@@ -4,7 +4,7 @@ import io.realm.RealmModel
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
 
-//@RealmClass
+@RealmClass
 open class CategoryRealm: RealmModel {
     @PrimaryKey
     var id: Int = 0
