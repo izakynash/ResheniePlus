@@ -36,6 +36,11 @@ class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
+//        val config = RealmConfiguration.Builder()
+//            .deleteRealmIfMigrationNeeded()
+//            .build()
+//        Realm.setDefaultConfiguration(config)
+
 //        val mRealm = Realm.getDefaultInstance()
 //        mRealm.beginTransaction()
 //        mRealm.where(CategoryRealm::class.java).findAll()

@@ -19,7 +19,6 @@ class DataBaseHelper {
         fun getAllCategory() = categoryList
     }
 
-
     fun saveCategory (category: Category) {
         Realm.getDefaultInstance().use { realm ->
             realm.beginTransaction()

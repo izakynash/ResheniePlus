@@ -34,7 +34,7 @@ class EditBookActivity: AppCompatActivity() {
         if (etNameBook.text.toString() == "" || etDescribe.text.toString() == ""  || etLink.text.toString() == "" || etCategory.text.toString() == "")
             Toast.makeText(this, "Заполнены не все поля", LENGTH_SHORT).show()
         else {
-            val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString(), null)
+            val books = Books(1, etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString(), null)
             val intent = Intent()
             intent.putExtra("newBook", books)
             setResult(Activity.RESULT_OK, intent)
