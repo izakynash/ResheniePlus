@@ -9,6 +9,14 @@ import kotlinx.android.synthetic.main.activity_category_list.*
 import android.content.Intent
 import android.util.Log
 import info.goodline.reshenie_plus.models.Category
+import info.goodline.reshenie_plus.models.CategoryRealm
+import info.goodline.reshenie_plus.models.Migration
+import io.realm.Realm
+import io.realm.RealmConfiguration
+import io.realm.RealmResults
+import io.realm.annotations.PrimaryKey
+import java.security.AccessController.getContext
+
 
 class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
@@ -30,9 +38,17 @@ class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         toolbarCategory.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         Log.d(TAG, "onCreate")
 
+        Realm.init(this)
+
+//        val mRealm = Realm.getDefaultInstance()
+//        mRealm.beginTransaction()
+//        mRealm.where(CategoryRealm::class.java).findAll()
+//        mRealm.commitTransaction()
+//        Log.d(TAG, "mRealm")
+
+
         rvLayout.layoutManager = LinearLayoutManager(this)
-        val dataBaseHelper = DataBaseHelper()
-        rvLayout.adapter = CategoryAdapter(dataBaseHelper.categoryList, this)
+        rvLayout.adapter = CategoryAdapter(DataBaseHelper.getAllCategory(), this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

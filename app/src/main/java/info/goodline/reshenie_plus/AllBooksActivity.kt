@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
 
@@ -44,6 +46,8 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(tbAllBooks)
+
+        Log.d(TAG, "onCreate1")
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
         rvAllBooks.adapter = AllBookAdapter(booksArray, this)
