@@ -11,7 +11,7 @@ import io.realm.RealmConfiguration
 class DataBaseHelper {
 
     companion object {
-        val categoryList = mutableListOf(
+        private val categoryList = mutableListOf(
             Category(1, "Информатика"),
             Category(2, "Геометрия и инженерная графика")
         )
@@ -20,24 +20,11 @@ class DataBaseHelper {
     }
 
 
-//    fun loadChats(): MutableList<Category> {
-//        Realm.getDefaultInstance().use { realm ->
-//            val results = realm
-//                .where(CategoryRealm::class.java)
-//                .findAll()
-//            return realm.copyFromRealm(results).mapto
-//        }
-//    }
-
-    fun saveAllCategory (category: Category, config: RealmConfiguration) {
-        Log.d(TAG, "saveCategory1")
-        Realm.getInstance(config).use { realm ->
+    fun saveCategory (category: Category) {
+        Realm.getDefaultInstance().use { realm ->
             realm.beginTransaction()
-            Log.d(TAG, "saveCategory2")
             realm.copyFromRealm(realm.copyToRealmOrUpdate(category.map2Realm()))
-            // realm.copyFromRealm(realm.copyToRealmOrUpdate(category.map2Realm()))
-            // realm.copyFromRealm(realm.copyToRealmOrUpdate(category.map2Realm()))
-            Log.d(TAG, "saveCategory3")
+            Log.d(TAG, "Realm.getDefaultInstance ${realm.where(CategoryRealm::class.java).findAll()}")
             realm.commitTransaction()
         }
     }

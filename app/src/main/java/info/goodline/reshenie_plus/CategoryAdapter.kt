@@ -27,36 +27,9 @@ class CategoryAdapter(private val categoryList: MutableList<Category>, private v
     override fun onBindViewHolder(bookVH: BookVH, position: Int) {
         val categoryName = categoryList[position]
         bookVH.tvCategoryVH?.text = categoryName.name
-        Log.d(TAG, "Category_onBindView")
 
-        Realm.getDefaultInstance().use { realm2 ->
-            realm2.beginTransaction()
-            Log.d(TAG, "Realm.get1")
-            // Важный момент - При использовании copyToRealmOrUpdate если записи в бд нет, то она добавится, если
-            // по первичному ключу запись будет найдена, то realm обновит ее
-            realm2.copyFromRealm(realm2.copyToRealmOrUpdate(categoryName.map2Realm()))
-            Log.d(TAG, "Realm.get2 ${realm2.where(CategoryRealm::class.java).findAll()}")
-            realm2.commitTransaction()
-        }
-
-
-//
-//        val config = RealmConfiguration.Builder()
-//            .name("myrealm.realm")
-//            .schemaVersion(1)
-//            .modules(CategoryRealm())
-//            .migration(Migration())
-//            .build()
-
-//        val dataBaseHelper = DataBaseHelper()
-//        dataBaseHelper.saveAllCategory(categoryName, config)
-
-//        val mRealm = Realm.getDefaultInstance()
-//        mRealm.beginTransaction()
-//        val categoryRealm: CategoryRealm = mRealm.createObject(CategoryRealm::class.java)
-//        categoryRealm.id = categoryName.id
-//        categoryRealm.name = categoryName.name
-//        mRealm.commitTransaction()
+        val dataBaseHelper = DataBaseHelper()
+        dataBaseHelper.saveCategory(categoryName)
 
         bookVH.itemView.setOnClickListener {
             clickListener.onItemClick(categoryName.name)

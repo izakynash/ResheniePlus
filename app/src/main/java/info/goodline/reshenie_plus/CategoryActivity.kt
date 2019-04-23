@@ -20,10 +20,6 @@ import java.security.AccessController.getContext
 
 class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-//    private val bookNameArray: List<String> = Arrays.asList(
-//        "Информатика", "Геометрия и инженерная графика"
-//    )
-
     override fun onItemClick(nameItem: String?) {
         val intent = Intent()
         intent.putExtra("addCategory", nameItem)
