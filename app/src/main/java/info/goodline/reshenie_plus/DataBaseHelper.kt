@@ -18,7 +18,7 @@ class DataBaseHelper {
             Category(2, "Геометрия и инженерная графика")
         )
 
-        var chapterList: MutableList<Chapter> = mutableListOf(
+        var chapterList: MutableList<Chapter?> = mutableListOf(
         )
 
         var bookList: MutableList<Book?> = mutableListOf(

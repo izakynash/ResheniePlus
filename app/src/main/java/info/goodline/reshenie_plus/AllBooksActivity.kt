@@ -49,7 +49,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
-        val realm = Realm.getDefaultInstance()
+     //   val realm = Realm.getDefaultInstance()
       //  realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
 
         dataBaseHelper.saveBook(bookList[0])

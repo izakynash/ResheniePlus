@@ -10,15 +10,25 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import info.goodline.reshenie_plus.extensions.map2Data
+import info.goodline.reshenie_plus.extensions.map2Realm
+import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.models.BookRealm
 import info.goodline.reshenie_plus.models.Chapter
+import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_chapter.*
 import kotlinx.android.synthetic.main.activity_edit_book.*
 import java.util.*
 
+
 class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-//    private val chapterNameArray: List<String> = ArraaList(
-//    )
+    var book: BookRealm? = null
+
+    val dataBaseHelper = DataBaseHelper()
+
+    var chapterList: MutableList<Chapter?> = DataBaseHelper.chapterList
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent(this, TaskActivity::class.java)
@@ -37,8 +47,11 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         val nameBook = intent?.extras?.get("nameBook").toString()
         tvNameBookUp.text = nameBook
 
+        val realm = Realm.getDefaultInstance()
+        book = realm.where(BookRealm::class.java).equalTo("name", nameBook).findFirst()
+
         rvChapter.layoutManager = LinearLayoutManager(this)
-        rvChapter.adapter = ChapterAdapter(DataBaseHelper.chapterList, this)
+        rvChapter.adapter = ChapterAdapter(chapterList, this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -58,21 +71,31 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         return super.onCreateOptionsMenu(menu)
     }
 
-//    fun btnAddChapter(view: View) {
-//        var chapterList = DataBaseHelper.chapterList
-//       chapterList
-//
-//        if (etNameNewChapter.text.toString() == "")
-//            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
-//        else {
-//            val chapter = Chapter(1, etNameNewChapter.text.toString())
-//            val intent = Intent()
-//            intent.putExtra("newBook", books)
-//            setResult(Activity.RESULT_OK, intent)
-//            Log.d(TAG, "btnSave")
-//            finish()
-//        }
-//    }
+    fun btnAddChapter(view: View) {
+        if (etNameNewChapter.text.toString() == "")
+            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
+        else {
+            val chapter = Chapter(name = etNameNewChapter.text.toString())
+            Log.d(TAG, "btnSaveChapter1")
+
+            val adapter = rvChapter.adapter as ChapterAdapter
+            Log.d(TAG, "btnSaveChapter2")
+
+            adapter.insertItem(chapter)
+            Log.d(TAG, "btnSaveChapter3")
+
+
+            book?.chapters?.add(chapter.map2Realm())
+
+            Log.d(TAG, "btnSaveChapter4")
+
+            //book?.chapters?.id = chapterList.size
+            Log.d(TAG, "btnSaveChapter5")
+            dataBaseHelper.saveBook(book?.map2Data())
+
+            Log.d(TAG, "btnSaveChapter")
+        }
+    }
 //
 //        val intent = Intent(this, EditBookActivity::class.java)
 //        startActivityForResult(intent, AllBooksActivity.REQUEST_CODE_EDIT_BOOK)
