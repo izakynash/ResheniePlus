@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import info.goodline.reshenie_plus.models.Book
 
-class AllBookAdapter(var booksArray: MutableList<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+class AllBookAdapter(var booksArray: MutableList<Book>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
@@ -24,20 +25,21 @@ class AllBookAdapter(var booksArray: MutableList<Books?>, private val clickListe
     }
 
     override fun onBindViewHolder(allBooksVH: AllBooksVH, position: Int) {
-        val book: Books? = booksArray[position]
+        val book: Book = booksArray[position]
 
-        allBooksVH.tvNameBookVH?.text = book?.name
-        allBooksVH.tvDescribeVH?.text = book?.describe
-        allBooksVH.tvLinkVH?.text = book?.link
+        allBooksVH.tvNameBookVH?.text = book.name
+        allBooksVH.tvDescribeVH?.text = book.describtion
+        allBooksVH.tvLinkVH?.text = book.link
         // временно на новые книжки ставим общую рабочую картинку:
         if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
-        else allBooksVH.ivImageVH?.setImageResource(book?.image!!)
+        else allBooksVH.ivImageVH?.setImageResource(book.image)
+
+        Log.d(TAG, "onBindViewHolder")
 
         allBooksVH.itemView.setOnClickListener {
-            clickListener.onItemClick(book?.name)
+            clickListener.onItemClick(book.name)
         }
     }
-
 
     class AllBooksVH(itemViewBooks: View?) : RecyclerView.ViewHolder(itemViewBooks) {
         var tvNameBookVH: TextView? = null
@@ -53,12 +55,12 @@ class AllBookAdapter(var booksArray: MutableList<Books?>, private val clickListe
         }
     }
 
-    fun insertItem(item: Books?) {
-        booksArray.add(0, item)
-        Log.d(TAG, "insert")
-        notifyItemInserted(0)
-        Log.d(TAG, "notify")
-    }
+//    fun insertItem(item: Books?) {
+//        booksArray.add(0, item)
+//        Log.d(TAG, "insert")
+//        notifyItemInserted(0)
+//        Log.d(TAG, "notify")
+//    }
 
 
 }

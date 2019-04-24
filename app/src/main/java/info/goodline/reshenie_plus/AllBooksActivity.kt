@@ -7,10 +7,15 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
+import info.goodline.reshenie_plus.extensions.map2Realm
+import info.goodline.reshenie_plus.models.BookRealm
+import info.goodline.reshenie_plus.models.CategoryRealm
 import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
+
+
 
 const val TAG = "LOOK"
 class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
@@ -58,7 +63,8 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         Log.d(TAG, "onCreate1")
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(booksArray, this)
+        //rvAllBooks.adapter = AllBookAdapter(booksArray, this)
+        rvAllBooks.adapter = AllBookAdapter(bookList, this)
 
         Log.d(TAG, "onCreate")
     }
@@ -71,10 +77,23 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             Log.d(TAG, "onActivityResult")
-            val book: Books? = data?.extras?.getParcelable<Books>("newBook")
+            //val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
-            booksArray.add(2, book)
+            var id = data?.extras?.getInt("newBook")
+//            dataBaseHelper.saveBook(bookList[0])
+
+    //        dataBaseHelper.loadBooks()[2]
+
+            Realm.getDefaultInstance().use { realm ->
+                realm.beginTransaction()
+                Log.d(TAG, "Realm.getDefaultInstance ${realm.where(BookRealm::class.java).findAll()}")
+                realm.commitTransaction()
+            }
+
+
+            bookList.add(2, dataBaseHelper.loadBooks()[2])
             rvAllBooks.adapter.notifyItemInserted(2)
+
             //dataBaseHelper.saveBook(book)
         }
     }
