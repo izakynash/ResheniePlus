@@ -15,6 +15,7 @@ import java.util.*
 const val TAG = "LOOK"
 class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
+    val dataBaseHelper = DataBaseHelper()
 
     override fun onItemClick(nameItem: String?) {
         Log.d(TAG, "AllBooks_onItemClick")
@@ -29,7 +30,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     var bookList = DataBaseHelper.bookList
 
-    var booksArray: List<Books?> = Arrays.asList(
+    var booksArray: MutableList<Books?> = mutableListOf(
         Books(1,
             "Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
@@ -51,7 +52,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
-        val dataBaseHelper = DataBaseHelper()
         dataBaseHelper.saveBook(bookList[0])
         dataBaseHelper.saveBook(bookList[1])
         
@@ -73,8 +73,9 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
             Log.d(TAG, "onActivityResult")
             val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
-            booksArray = booksArray.plus(book)
-            rvAllBooks.adapter = AllBookAdapter(booksArray, this)
+            booksArray.add(2, book)
+            rvAllBooks.adapter.notifyItemInserted(2)
+            //dataBaseHelper.saveBook(book)
         }
     }
 

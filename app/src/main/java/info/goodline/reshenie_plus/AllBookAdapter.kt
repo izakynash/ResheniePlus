@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class AllBookAdapter(var booksArray: List<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+class AllBookAdapter(var booksArray: MutableList<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
@@ -36,8 +36,6 @@ class AllBookAdapter(var booksArray: List<Books?>, private val clickListener: Al
         allBooksVH.itemView.setOnClickListener {
             clickListener.onItemClick(book?.name)
         }
-
-        Log.d(TAG, "AllBook_onBindView")
     }
 
 
@@ -55,4 +53,13 @@ class AllBookAdapter(var booksArray: List<Books?>, private val clickListener: Al
         }
     }
 
+    fun insertItem(item: Books?) {
+        booksArray.add(0, item)
+        Log.d(TAG, "insert")
+        notifyItemInserted(0)
+        Log.d(TAG, "notify")
+    }
+
+
 }
+
