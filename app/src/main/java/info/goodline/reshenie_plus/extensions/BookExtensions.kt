@@ -24,8 +24,8 @@ fun MutableList<Book>.map2RealmList(): RealmList<BookRealm> {
     return rl
 }
 
-fun MutableList<BookRealm>.map2DataList(): MutableList<Book> {
-    val l = ArrayList<Book>()
+fun MutableList<BookRealm>.map2DataList(): MutableList<Book?> {
+    val l = ArrayList<Book?>()
     this.forEach { l.add(it.map2Data()) }
     return l
 }

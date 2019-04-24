@@ -22,13 +22,13 @@ class DataBaseHelper {
         )
 
         var bookList: MutableList<Book?> = mutableListOf(
-            Book(1,
+            Book(0,
                 "Информатика: Теория, вычисления, программирование",
                 "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
                 "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
                 R.drawable.book1
             ),
-            Book(2,
+            Book(1,
                 "Информатика. Программирование в системе Turbo  Pascal",
                 "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
                 "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
@@ -57,7 +57,7 @@ class DataBaseHelper {
         }
     }
 
-    fun loadBooks(): MutableList<Book> {
+    fun loadBooks(): MutableList<Book?> {
         Realm.getDefaultInstance().use { realm ->
             val results = realm
                 .where(BookRealm::class.java)
@@ -67,5 +67,14 @@ class DataBaseHelper {
         }
     }
 
-
+    fun deleteBook(book: Book?) {
+        Realm.getDefaultInstance().use { realm ->
+            realm.executeTransaction {
+                val result = it.where(BookRealm::class.java)
+                    .equalTo("id", book?.id)
+                    .findAll()
+                result.deleteAllFromRealm()
+            }
+        }
+    }
 }

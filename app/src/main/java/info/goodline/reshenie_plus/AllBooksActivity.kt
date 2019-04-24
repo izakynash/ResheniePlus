@@ -5,8 +5,11 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.*
+import info.goodline.reshenie_plus.extensions.map2DataList
 import info.goodline.reshenie_plus.extensions.map2Realm
 import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.BookRealm
@@ -15,6 +18,9 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 import java.util.*
+import io.realm.RealmResults
+
+
 
 
 
@@ -36,21 +42,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     var bookList: MutableList<Book?> = DataBaseHelper.bookList
 
-    var booksArray: MutableList<Books?> = mutableListOf(
-        Books(1,
-            "Информатика: Теория, вычисления, программирование",
-            "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
-            R.drawable.book1
-        ),
-        Books(2,
-            "Информатика. Программирование в системе Turbo  Pascal",
-            "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
-            R.drawable.book2
-        )
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_books)
@@ -58,13 +49,17 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
+        val realm = Realm.getDefaultInstance()
+      //  realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
+
         dataBaseHelper.saveBook(bookList[0])
         dataBaseHelper.saveBook(bookList[1])
         
         Log.d(TAG, "onCreate1")
 
+        bookList = dataBaseHelper.loadBooks()
+
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        //rvAllBooks.adapter = AllBookAdapter(booksArray, this)
         rvAllBooks.adapter = AllBookAdapter(bookList, this)
 
         Log.d(TAG, "onCreate")
@@ -78,24 +73,13 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
             Log.d(TAG, "onActivityResult")
-            //val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
             val book = data?.extras?.getParcelable<Book>("newBook")
-            book?.id = bookList.size+1
-            Log.d(TAG, "onActivityResult ${bookList.size}")
-
-//            dataBaseHelper.saveBook(bookList[0])
-
-    //        dataBaseHelper.loadBooks()[2]
+            book?.id = bookList.size
 
             dataBaseHelper.saveBook(book)
-
-            bookList.add(bookList.size, book)
-            rvAllBooks.adapter.notifyItemInserted(bookList.size)
-
-            
-
-            //dataBaseHelper.saveBook(book)
+            val adapter = rvAllBooks.adapter as AllBookAdapter
+            adapter.insertItem(book)
         }
     }
 

@@ -55,12 +55,37 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         }
     }
 
-//    fun insertItem(item: Books?) {
-//        booksArray.add(0, item)
-//        Log.d(TAG, "insert")
-//        notifyItemInserted(0)
-//        Log.d(TAG, "notify")
-//    }
+    fun insertItem(item: Book?) {
+        booksArray.add(2, item)
+        Log.d(TAG, "insert")
+        notifyItemInserted(2)
+        Log.d(TAG, "notify")
+    }
+
+    fun removeAt(position: Int) {
+        booksArray.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun updateItemChat(item: Book) {
+        // Проверяем есть ли такой элемент в списке
+        if (!booksArray.contains(item)) {
+            // Если нет то ничего не обновлять
+            return
+        }
+        // Если есть, то обновить его
+        val positionItem = booksArray.indexOf(item)
+        booksArray[positionItem] = item
+        notifyItemChanged(positionItem)
+    }
+
+    fun getItemChat(position: Int): Book? {
+        if (position >= itemCount) {
+            return null
+        }
+
+        return booksArray[position]
+    }
 
 
 }
