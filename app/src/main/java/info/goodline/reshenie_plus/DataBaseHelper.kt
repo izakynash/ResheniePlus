@@ -1,5 +1,6 @@
 package info.goodline.reshenie_plus
 
+import android.support.annotation.NonNull
 import android.util.Log
 import info.goodline.reshenie_plus.extensions.map2Realm
 import info.goodline.reshenie_plus.extensions.map2Data
@@ -20,7 +21,7 @@ class DataBaseHelper {
         var chapterList: MutableList<Chapter> = mutableListOf(
         )
 
-        var bookList = mutableListOf(
+        var bookList: MutableList<Book?> = mutableListOf(
             Book(1,
                 "Информатика: Теория, вычисления, программирование",
                 "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
@@ -38,10 +39,10 @@ class DataBaseHelper {
         fun getAllCategory() = categoryList
     }
 
-    fun saveBook (book: Book) {
+    fun saveBook (book: Book?) {
         Realm.getDefaultInstance().use { realm ->
             realm.beginTransaction()
-            realm.copyFromRealm(realm.copyToRealmOrUpdate(book.map2Realm()))
+            realm.copyFromRealm(realm.copyToRealmOrUpdate(book?.map2Realm()))
             Log.d(TAG, "Realm.getDefaultInstance ${realm.where(BookRealm::class.java).findAll()}")
             realm.commitTransaction()
         }

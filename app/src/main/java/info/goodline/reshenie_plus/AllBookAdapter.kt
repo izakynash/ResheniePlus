@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import info.goodline.reshenie_plus.models.Book
 
-class AllBookAdapter(var booksArray: MutableList<Book>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
@@ -25,19 +25,19 @@ class AllBookAdapter(var booksArray: MutableList<Book>, private val clickListene
     }
 
     override fun onBindViewHolder(allBooksVH: AllBooksVH, position: Int) {
-        val book: Book = booksArray[position]
+        val book: Book? = booksArray[position]
 
-        allBooksVH.tvNameBookVH?.text = book.name
-        allBooksVH.tvDescribeVH?.text = book.describtion
-        allBooksVH.tvLinkVH?.text = book.link
+        allBooksVH.tvNameBookVH?.text = book?.name
+        allBooksVH.tvDescribeVH?.text = book?.describtion
+        allBooksVH.tvLinkVH?.text = book?.link
         // временно на новые книжки ставим общую рабочую картинку:
         if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
-        else allBooksVH.ivImageVH?.setImageResource(book.image)
+        else allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
 
         Log.d(TAG, "onBindViewHolder")
 
         allBooksVH.itemView.setOnClickListener {
-            clickListener.onItemClick(book.name)
+            clickListener.onItemClick(book?.name)
         }
     }
 

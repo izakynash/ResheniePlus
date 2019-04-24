@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.*
 import info.goodline.reshenie_plus.extensions.map2Realm
+import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.BookRealm
 import info.goodline.reshenie_plus.models.CategoryRealm
 import io.realm.Realm
@@ -33,7 +34,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
 
-    var bookList = DataBaseHelper.bookList
+    var bookList: MutableList<Book?> = DataBaseHelper.bookList
 
     var booksArray: MutableList<Books?> = mutableListOf(
         Books(1,
@@ -79,20 +80,20 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
             Log.d(TAG, "onActivityResult")
             //val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
-            var id = data?.extras?.getInt("newBook")
+            val book = data?.extras?.getParcelable<Book>("newBook")
+            book?.id = bookList.size+1
+            Log.d(TAG, "onActivityResult ${bookList.size}")
+
 //            dataBaseHelper.saveBook(bookList[0])
 
     //        dataBaseHelper.loadBooks()[2]
 
-            Realm.getDefaultInstance().use { realm ->
-                realm.beginTransaction()
-                Log.d(TAG, "Realm.getDefaultInstance ${realm.where(BookRealm::class.java).findAll()}")
-                realm.commitTransaction()
-            }
+            dataBaseHelper.saveBook(book)
 
+            bookList.add(bookList.size, book)
+            rvAllBooks.adapter.notifyItemInserted(bookList.size)
 
-            bookList.add(2, dataBaseHelper.loadBooks()[2])
-            rvAllBooks.adapter.notifyItemInserted(2)
+            
 
             //dataBaseHelper.saveBook(book)
         }
