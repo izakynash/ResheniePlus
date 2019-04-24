@@ -58,23 +58,23 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun btnAddChapter(view: View) {
-        var chapterList = DataBaseHelper.chapterList
-       chapterList
-
-        if (etNameNewChapter.text.toString() == "")
-            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
-        else {
-            val chapter = Chapter(1, etNameNewChapter.text.toString())
-            val intent = Intent()
-            intent.putExtra("newBook", books)
-            setResult(Activity.RESULT_OK, intent)
-            Log.d(TAG, "btnSave")
-            finish()
-        }
-    }
-
-        val intent = Intent(this, EditBookActivity::class.java)
-        startActivityForResult(intent, AllBooksActivity.REQUEST_CODE_EDIT_BOOK)
-    }
+//    fun btnAddChapter(view: View) {
+//        var chapterList = DataBaseHelper.chapterList
+//       chapterList
+//
+//        if (etNameNewChapter.text.toString() == "")
+//            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
+//        else {
+//            val chapter = Chapter(1, etNameNewChapter.text.toString())
+//            val intent = Intent()
+//            intent.putExtra("newBook", books)
+//            setResult(Activity.RESULT_OK, intent)
+//            Log.d(TAG, "btnSave")
+//            finish()
+//        }
+//    }
+//
+//        val intent = Intent(this, EditBookActivity::class.java)
+//        startActivityForResult(intent, AllBooksActivity.REQUEST_CODE_EDIT_BOOK)
+//    }
 }

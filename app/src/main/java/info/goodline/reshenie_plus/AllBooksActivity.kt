@@ -27,14 +27,16 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
 
+    var bookList = DataBaseHelper.bookList
+
     var booksArray: List<Books?> = Arrays.asList(
-        Books(
+        Books(1,
             "Информатика: Теория, вычисления, программирование",
             "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
             R.drawable.book1
         ),
-        Books(
+        Books(2,
             "Информатика. Программирование в системе Turbo  Pascal",
             "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
             "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
@@ -47,6 +49,12 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(tbAllBooks)
 
+        Realm.init(this)
+
+        val dataBaseHelper = DataBaseHelper()
+        dataBaseHelper.saveBook(bookList[0])
+        dataBaseHelper.saveBook(bookList[1])
+        
         Log.d(TAG, "onCreate1")
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)

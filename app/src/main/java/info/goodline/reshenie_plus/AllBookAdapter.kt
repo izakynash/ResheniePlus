@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-class AllBookAdapter(private var booksArray: List<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
+class AllBookAdapter(var booksArray: List<Books?>, private val clickListener: AllBooksActivity): RecyclerView.Adapter<AllBookAdapter.AllBooksVH>() {
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
@@ -54,4 +54,5 @@ class AllBookAdapter(private var booksArray: List<Books?>, private val clickList
             ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
         }
     }
+
 }

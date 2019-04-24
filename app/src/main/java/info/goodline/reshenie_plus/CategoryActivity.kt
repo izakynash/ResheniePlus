@@ -34,12 +34,12 @@ class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         toolbarCategory.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         Log.d(TAG, "onCreate")
 
-        Realm.init(this)
+//        Realm.init(this)
 
-        val config = RealmConfiguration.Builder()
-            .deleteRealmIfMigrationNeeded()
-            .build()
-        Realm.setDefaultConfiguration(config)
+//        val config = RealmConfiguration.Builder()
+//            .deleteRealmIfMigrationNeeded()
+//            .build()
+//        Realm.setDefaultConfiguration(config)
 
 //        val mRealm = Realm.getDefaultInstance()
 //        mRealm.beginTransaction()
