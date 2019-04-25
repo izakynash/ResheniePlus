@@ -5,7 +5,7 @@ import android.os.Parcelable
 import info.goodline.reshenie_plus.models.Chapter
 
 
-class Books (val id: Int, val name: String?, val describe: String?, val link: String?, val image: Int?, val Chapters: MutableList<Chapter>? = null) : Parcelable {
+class Books (var id: Int, var name: String?, var describe: String?, var link: String?, var image: Int?, var Chapters: MutableList<Chapter>? = null) : Parcelable {
 
     constructor (`in`: Parcel): this (`in`.readInt(), `in`.readString(),`in`.readString(),`in`.readString(), `in`.readInt())
 

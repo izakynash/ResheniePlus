@@ -2,26 +2,15 @@ package info.goodline.reshenie_plus
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
-import android.view.*
-import info.goodline.reshenie_plus.extensions.map2DataList
-import info.goodline.reshenie_plus.extensions.map2Realm
+import android.view.Menu
+import android.view.View
 import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
-import info.goodline.reshenie_plus.models.CategoryRealm
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
-import java.util.*
-import io.realm.RealmResults
-
-
-
 
 
 const val TAG = "LOOK"
@@ -40,7 +29,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
 
-    var bookList: MutableList<Book?> = DataBaseHelper.bookList
+    // var bookList: MutableList<Book?> = DataBaseHelper.bookList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +38,18 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
-     //   val realm = Realm.getDefaultInstance()
-      //  realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
+        // сбросить конфигурацию
+//        val config = RealmConfiguration.Builder()
+//         .deleteRealmIfMigrationNeeded()
+//            .build()
+//       Realm.setDefaultConfiguration(config)
 
-        dataBaseHelper.saveBook(bookList[0])
-        dataBaseHelper.saveBook(bookList[1])
-        
-        Log.d(TAG, "onCreate1")
-
-        bookList = dataBaseHelper.loadBooks()
+        // очистить бд
+//               val realm = Realm.getDefaultInstance()
+//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(bookList, this)
+        rvAllBooks.adapter = AllBookAdapter(dataBaseHelper.loadBooks(), this)
 
         Log.d(TAG, "onCreate")
     }
@@ -75,7 +64,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
             Log.d(TAG, "onActivityResult")
 
             val book = data?.extras?.getParcelable<Book>("newBook")
-            book?.id = bookList.size
 
             dataBaseHelper.saveBook(book)
             val adapter = rvAllBooks.adapter as AllBookAdapter

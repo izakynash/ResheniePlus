@@ -10,7 +10,6 @@ class Book (var id: Int = 0, var name: String, var describtion: String, var link
         parcel.readString(),
         parcel.readString(),
         parcel.readInt()
-//        TODO("chapters")
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {

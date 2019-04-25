@@ -56,9 +56,9 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
     }
 
     fun insertItem(item: Book?) {
-        booksArray.add(2, item)
+        booksArray.add(0, item)
         Log.d(TAG, "insert")
-        notifyItemInserted(2)
+        notifyItemInserted(0)
         Log.d(TAG, "notify")
     }
 

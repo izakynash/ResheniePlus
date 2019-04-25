@@ -11,8 +11,8 @@ import io.realm.annotations.Required
 @RealmClass
 open class BookRealm: RealmModel {
     @PrimaryKey
-    var id: Int = 0
     var name: String = ""
+    var id: Int = 0
     var description: String = ""
     var link: String = ""
     var image: Int = 0

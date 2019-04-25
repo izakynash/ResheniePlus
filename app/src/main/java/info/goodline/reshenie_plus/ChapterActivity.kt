@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import info.goodline.reshenie_plus.extensions.map2Data
+import info.goodline.reshenie_plus.extensions.map2DataList
 import info.goodline.reshenie_plus.extensions.map2Realm
 import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.BookRealm
@@ -24,7 +25,7 @@ import java.util.*
 
 class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-    var book: BookRealm? = null
+    var book: Book? = null
 
     val dataBaseHelper = DataBaseHelper()
 
@@ -47,11 +48,15 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         val nameBook = intent?.extras?.get("nameBook").toString()
         tvNameBookUp.text = nameBook
 
-        val realm = Realm.getDefaultInstance()
-        book = realm.where(BookRealm::class.java).equalTo("name", nameBook).findFirst()
+        Realm.getDefaultInstance().use { realm ->
+            val results = realm
+                .where(BookRealm::class.java).equalTo("name", nameBook)
+                .findFirst()
+            book = realm.copyFromRealm(results)?.map2Data() }
 
-        rvChapter.layoutManager = LinearLayoutManager(this)
-        rvChapter.adapter = ChapterAdapter(chapterList, this)
+            rvChapter.layoutManager = LinearLayoutManager(this)
+            rvChapter.adapter = ChapterAdapter(book?.chapters, this)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -76,28 +81,35 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
             Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
         else {
             val chapter = Chapter(name = etNameNewChapter.text.toString())
-            Log.d(TAG, "btnSaveChapter1")
 
             val adapter = rvChapter.adapter as ChapterAdapter
-            Log.d(TAG, "btnSaveChapter2")
-
             adapter.insertItem(chapter)
-            Log.d(TAG, "btnSaveChapter3")
+
+            dataBaseHelper.saveBook(book)
+
+//
 
 
-            book?.chapters?.add(chapter.map2Realm())
+//
+//            Realm.getDefaultInstance().use { realm ->
+//                val dataObject = realm.createObject(BookRealm::class.java)
+//                dataObject.chapters = book.chapters
+//            }
 
-            Log.d(TAG, "btnSaveChapter4")
 
-            //book?.chapters?.id = chapterList.size
-            Log.d(TAG, "btnSaveChapter5")
-            dataBaseHelper.saveBook(book?.map2Data())
-
-            Log.d(TAG, "btnSaveChapter")
+//            book?.chapters?.add(chapter.map2Realm())
+//
+//            Log.d(TAG, "btnSaveChapter4")
+//
+//            //book?.chapters?.id = chapterList.size
+//            Log.d(TAG, "btnSaveChapter5")
+//            dataBaseHelper.saveBook(book?.map2Data())
+//
+//            Log.d(TAG, "btnSaveChapter")
+            }
         }
-    }
 //
 //        val intent = Intent(this, EditBookActivity::class.java)
 //        startActivityForResult(intent, AllBooksActivity.REQUEST_CODE_EDIT_BOOK)
-//    }
-}
+    }//    }
+
