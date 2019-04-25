@@ -7,20 +7,25 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
+import info.goodline.reshenie_plus.extensions.map2Data
+import info.goodline.reshenie_plus.models.*
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_chapter.*
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
 class TaskActivity : AppCompatActivity() {
 
-    private val taskNumberArray: List<String> = Arrays.asList(
-        "1", "2", "3"
-    )
+//    private val taskNumberArray: List<String> = Arrays.asList(
+//        "1", "2", "3"
+//    )
 
-//    override fun onItemClick(nameItem: String?) {
-//        val intent = Intent(this, EditBookActivity::class.java) // исправить на таск активити
-//        intent.putExtra("nameChapter", nameItem)
-//    }
+    var chapter: Chapter? = null
+
+    private val dataBaseHelper = DataBaseHelper()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +40,28 @@ class TaskActivity : AppCompatActivity() {
         tvTaskNameBookUpTask.text = nameBook
         tvNameСhapterUpTask.text = nameChapter
 
+        Realm.getDefaultInstance().use { realm ->
+            val results = realm
+                .where(ChapterRealm::class.java).equalTo("name", nameChapter)
+                .findFirst()
+            chapter = realm.copyFromRealm(results)?.map2Data()
+        }
+
         rvTask.layoutManager = LinearLayoutManager(this)
-        rvTask.adapter = TaskAdapter(taskNumberArray)
+        rvTask.adapter = TaskAdapter(chapter?.tasks)
+    }
+
+    fun btnAddTask(view: View) {
+        if (etNumberNewTask.text.toString() == "")
+            Toast.makeText(this, "Введите номер задачи", Toast.LENGTH_SHORT).show()
+        else {
+            val task = Task(number = etNumberNewTask.text.toString().toInt())
+
+            val adapter = rvTask.adapter as TaskAdapter
+            adapter.insertItem(task)
+
+            dataBaseHelper.saveChapter(chapter)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

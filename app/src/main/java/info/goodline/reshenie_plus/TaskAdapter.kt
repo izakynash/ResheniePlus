@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import info.goodline.reshenie_plus.models.Chapter
+import info.goodline.reshenie_plus.models.Task
 
-class TaskAdapter(private val taskNumberArray: List<String>): RecyclerView.Adapter<TaskAdapter.TaskVH>() {
+class TaskAdapter(private val taskNumberArray: MutableList<Task>?): RecyclerView.Adapter<TaskAdapter.TaskVH>() {
 
-    override fun getItemCount() = taskNumberArray.size
+    override fun getItemCount() = taskNumberArray!!.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): TaskVH {
         Log.d(TAG, "Task_onCreateViewHolder")
@@ -18,13 +20,8 @@ class TaskAdapter(private val taskNumberArray: List<String>): RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(VH: TaskVH, position: Int) {
-        val taskNumber: String = taskNumberArray[position]
-        VH.tvTaskVH?.text = taskNumber
-        Log.d(TAG, "Task_onBindView")
-
-//        VH.itemView.setOnClickListener {
-//            clickListener.onItemClick(chapterName)
-//        }
+        val taskNumber = taskNumberArray!![position]
+        VH.tvTaskVH?.text = taskNumber.number.toString()
     }
 
     class TaskVH (itemView: View?): RecyclerView.ViewHolder(itemView) {
@@ -32,5 +29,12 @@ class TaskAdapter(private val taskNumberArray: List<String>): RecyclerView.Adapt
         init {
             tvTaskVH = itemView?.findViewById(R.id.tvNameItem)
         }
+    }
+
+    fun insertItem(item: Task) {
+        taskNumberArray?.add(0, item)
+        Log.d(TAG, "insert")
+        notifyItemInserted(0)
+        Log.d(TAG, "notify")
     }
 }

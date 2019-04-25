@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 

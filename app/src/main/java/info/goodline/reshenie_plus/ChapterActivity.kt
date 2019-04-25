@@ -27,9 +27,7 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
 
     var book: Book? = null
 
-    val dataBaseHelper = DataBaseHelper()
-
-    var chapterList: MutableList<Chapter?> = DataBaseHelper.chapterList
+    private val dataBaseHelper = DataBaseHelper()
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent(this, TaskActivity::class.java)
@@ -52,11 +50,25 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
             val results = realm
                 .where(BookRealm::class.java).equalTo("name", nameBook)
                 .findFirst()
-            book = realm.copyFromRealm(results)?.map2Data() }
+            book = realm.copyFromRealm(results)?.map2Data()
+        }
 
-            rvChapter.layoutManager = LinearLayoutManager(this)
-            rvChapter.adapter = ChapterAdapter(book?.chapters, this)
+        rvChapter.layoutManager = LinearLayoutManager(this)
+        rvChapter.adapter = ChapterAdapter(book?.chapters, this)
+    }
 
+    fun btnAddChapter(view: View) {
+        if (etNameNewChapter.text.toString() == "")
+            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
+        else {
+            val chapter = Chapter(name = etNameNewChapter.text.toString())
+
+            val adapter = rvChapter.adapter as ChapterAdapter
+            adapter.insertItem(chapter)
+
+            dataBaseHelper.saveBook(book)
+
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -71,45 +83,9 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         return super.onOptionsItemSelected(item)
     }
 
- override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_with_account, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
-    fun btnAddChapter(view: View) {
-        if (etNameNewChapter.text.toString() == "")
-            Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
-        else {
-            val chapter = Chapter(name = etNameNewChapter.text.toString())
-
-            val adapter = rvChapter.adapter as ChapterAdapter
-            adapter.insertItem(chapter)
-
-            dataBaseHelper.saveBook(book)
-
-//
-
-
-//
-//            Realm.getDefaultInstance().use { realm ->
-//                val dataObject = realm.createObject(BookRealm::class.java)
-//                dataObject.chapters = book.chapters
-//            }
-
-
-//            book?.chapters?.add(chapter.map2Realm())
-//
-//            Log.d(TAG, "btnSaveChapter4")
-//
-//            //book?.chapters?.id = chapterList.size
-//            Log.d(TAG, "btnSaveChapter5")
-//            dataBaseHelper.saveBook(book?.map2Data())
-//
-//            Log.d(TAG, "btnSaveChapter")
-            }
-        }
-//
-//        val intent = Intent(this, EditBookActivity::class.java)
-//        startActivityForResult(intent, AllBooksActivity.REQUEST_CODE_EDIT_BOOK)
-    }//    }
+}
 

@@ -46,6 +46,15 @@ class DataBaseHelper {
         }
     }
 
+    fun saveChapter (chapter: Chapter?) {
+        Realm.getDefaultInstance().use { realm ->
+            realm.beginTransaction()
+            realm.copyFromRealm(realm.copyToRealmOrUpdate(chapter?.map2Realm()))
+            Log.d(TAG, "Realm.getDefaultInstance ${realm.where(ChapterRealm::class.java).findAll()}")
+            realm.commitTransaction()
+        }
+    }
+
     fun saveCategory (category: Category) {
         Realm.getDefaultInstance().use { realm ->
             realm.beginTransaction()
