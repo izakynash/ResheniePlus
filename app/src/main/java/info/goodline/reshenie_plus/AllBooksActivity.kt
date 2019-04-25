@@ -19,7 +19,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     val dataBaseHelper = DataBaseHelper()
 
     override fun onItemClick(nameItem: String?) {
-        Log.d(TAG, "AllBooks_onItemClick")
         val intent = Intent(this, ChapterActivity::class.java)
         intent.putExtra("nameBook", nameItem)
         startActivity(intent)
@@ -63,6 +62,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
             val book = data?.extras?.getParcelable<Book>("newBook")
 
             dataBaseHelper.saveBook(book)
+
             val adapter = rvAllBooks.adapter as AllBookAdapter
             adapter.insertItem(book)
         }
