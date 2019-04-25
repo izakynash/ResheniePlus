@@ -61,7 +61,6 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
             adapter.insertItem(chapter)
 
             dataBaseHelper.saveBook(book)
-
         }
     }
 

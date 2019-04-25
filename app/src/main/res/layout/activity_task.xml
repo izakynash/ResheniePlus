@@ -11,7 +11,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/tbTask"
         style="@style/Toolbar"
-        app:title="Номера задач"
+        app:title="Выберите задание"
         android:layout_marginEnd="4dp"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#000000"/>
@@ -55,14 +55,25 @@
         android:layout_height="1dp"
         android:background="#c7c7c7"/>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvTask"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_columnWeight="1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
     </android.support.v7.widget.RecyclerView>
+
+    </GridLayout>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"

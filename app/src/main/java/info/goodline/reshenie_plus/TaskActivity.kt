@@ -14,13 +14,15 @@ import info.goodline.reshenie_plus.models.ChapterRealm
 import info.goodline.reshenie_plus.models.Task
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_task.*
+import android.support.v7.widget.GridLayoutManager
+
+
 
 class TaskActivity : AppCompatActivity() {
 
     var chapter: Chapter? = null
 
     private val dataBaseHelper = DataBaseHelper()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +44,8 @@ class TaskActivity : AppCompatActivity() {
             chapter = realm.copyFromRealm(results)?.map2Data()
         }
 
-        rvTask.layoutManager = LinearLayoutManager(this)
+        //rvTask.layoutManager = LinearLayoutManager(this)
+        rvTask.layoutManager = GridLayoutManager(this, 4)
         rvTask.adapter = TaskAdapter(chapter?.tasks)
     }
 
