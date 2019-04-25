@@ -74,11 +74,12 @@ class DataBaseHelper {
         }
     }
 
-    fun deleteBook(book: Book?) {
+
+    fun deleteBook(nameBook: String?) {
         Realm.getDefaultInstance().use { realm ->
             realm.executeTransaction {
                 val result = it.where(BookRealm::class.java)
-                    .equalTo("id", book?.id)
+                    .equalTo("name", nameBook)
                     .findAll()
                 result.deleteAllFromRealm()
             }

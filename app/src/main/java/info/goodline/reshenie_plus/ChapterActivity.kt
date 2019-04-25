@@ -16,11 +16,11 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_chapter.*
 
 
-class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
-
-    var book: Book? = null
+class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener {
 
     private val dataBaseHelper = DataBaseHelper()
+
+    var book: Book? = null
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent(this, TaskActivity::class.java)

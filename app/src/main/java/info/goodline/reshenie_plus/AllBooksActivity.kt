@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.models.BookRealm
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_all_books.*
 
@@ -22,6 +23,11 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         val intent = Intent(this, ChapterActivity::class.java)
         intent.putExtra("nameBook", nameItem)
         startActivity(intent)
+    }
+
+    override fun onItemDelete(nameBook: String?) {
+       dataBaseHelper.deleteBook(nameBook)
+        Log.d(TAG, "onItemDelete")
     }
 
     companion object {
@@ -43,8 +49,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
         rvAllBooks.adapter = AllBookAdapter(dataBaseHelper.loadBooks(), this)
-
-        Log.d(TAG, "onCreate")
     }
 
     fun btnEditBook(view: View) {
@@ -70,6 +74,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         menuInflater.inflate(R.menu.menu_with_account, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 }
 
 

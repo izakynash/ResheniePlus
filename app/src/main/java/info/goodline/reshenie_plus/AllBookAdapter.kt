@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import info.goodline.reshenie_plus.models.Book
@@ -13,6 +14,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
+        fun onItemDelete(nameBook: String?)
     }
 
     override fun getItemCount() = booksArray.size
@@ -34,6 +36,10 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         allBooksVH.itemView.setOnClickListener {
             clickListener.onItemClick(book?.name)
         }
+
+        allBooksVH.btnDeleteBookVH?.setOnClickListener {
+            clickListener.onItemDelete(book?.name)
+        }
     }
 
     class AllBooksVH(itemViewBooks: View?) : RecyclerView.ViewHolder(itemViewBooks) {
@@ -41,12 +47,14 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         var tvDescribeVH: TextView? = null
         var tvLinkVH: TextView? = null
         var ivImageVH: ImageView? = null
+        var btnDeleteBookVH: Button? = null
 
         init {
             tvNameBookVH = itemViewBooks?.findViewById(R.id.tvNameBook)
             tvDescribeVH = itemViewBooks?.findViewById(R.id.tvDescribe)
             tvLinkVH = itemViewBooks?.findViewById(R.id.tvLink)
             ivImageVH = itemViewBooks?.findViewById(R.id.ivImage)
+            btnDeleteBookVH = itemViewBooks?.findViewById(R.id.btnDeleteBook)
         }
     }
 

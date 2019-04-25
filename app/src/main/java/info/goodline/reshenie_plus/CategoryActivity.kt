@@ -11,7 +11,7 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_category_list.*
 
 
-class CategoryActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
+class CategoryActivity : AppCompatActivity(), CategoryAdapter.onItemClickListener {
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent()

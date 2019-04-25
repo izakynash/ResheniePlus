@@ -15,6 +15,10 @@ import io.realm.RealmConfiguration
 
 class CategoryAdapter(private val categoryList: MutableList<Category>, private val clickListener: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
 
+    interface onItemClickListener {
+        fun onItemClick(nameItem: String?)
+    }
+
     override fun getItemCount() = categoryList.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): BookVH {

@@ -11,6 +11,10 @@ import info.goodline.reshenie_plus.models.Chapter
 
 class ChapterAdapter(private val chapterArray: MutableList<Chapter>?, private val clickListener: ChapterActivity): RecyclerView.Adapter<ChapterAdapter.ChapterVH>() {
 
+    interface onItemClickListener {
+        fun onItemClick(nameItem: String?)
+    }
+
     override fun getItemCount() = chapterArray!!.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): ChapterVH {
