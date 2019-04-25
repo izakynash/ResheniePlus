@@ -1,8 +1,7 @@
 package info.goodline.reshenie_plus
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
@@ -10,17 +9,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import info.goodline.reshenie_plus.extensions.map2Data
-import info.goodline.reshenie_plus.models.*
+import info.goodline.reshenie_plus.models.Chapter
+import info.goodline.reshenie_plus.models.ChapterRealm
+import info.goodline.reshenie_plus.models.Task
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_chapter.*
 import kotlinx.android.synthetic.main.activity_task.*
-import java.util.*
 
 class TaskActivity : AppCompatActivity() {
-
-//    private val taskNumberArray: List<String> = Arrays.asList(
-//        "1", "2", "3"
-//    )
 
     var chapter: Chapter? = null
 
@@ -69,11 +64,6 @@ class TaskActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> finish()
-
-            /*R.id.action_search -> {
-                val intent = Intent(this, SearchUsersActivity::class.java)
-                startActivity(intent)
-            } */
         }
         return super.onOptionsItemSelected(item)
     }

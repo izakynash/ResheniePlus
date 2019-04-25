@@ -1,26 +1,19 @@
 package info.goodline.reshenie_plus
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import info.goodline.reshenie_plus.extensions.map2Data
-import info.goodline.reshenie_plus.extensions.map2DataList
-import info.goodline.reshenie_plus.extensions.map2Realm
 import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.BookRealm
 import info.goodline.reshenie_plus.models.Chapter
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_all_books.*
 import kotlinx.android.synthetic.main.activity_chapter.*
-import kotlinx.android.synthetic.main.activity_edit_book.*
-import java.util.*
 
 
 class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
@@ -75,11 +68,6 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             android.R.id.home -> finish()
-
-            /*R.id.action_search -> {
-                val intent = Intent(this, SearchUsersActivity::class.java)
-                startActivity(intent)
-            } */
         }
         return super.onOptionsItemSelected(item)
     }
