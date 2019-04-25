@@ -68,31 +68,13 @@
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="12dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnEdit"
-            android:text="изменить"
-            android:textSize="8sp"
-            android:layout_gravity="center"
-            android:background="#ffffff"
-            android:layout_width="56dp"
-            android:layout_height="24dp"
-            />
-
         <Button
             android:id="@+id/btnDeleteBook"
             android:text="удалить"
             android:textSize="8dp"
-            android:layout_gravity="center"
             android:background="#ffffff"
             android:layout_width="56dp"
-            android:layout_height="24dp"
+            android:layout_height="12dp"
             />
-
-    </LinearLayout>
 
 </LinearLayout>

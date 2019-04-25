@@ -18,19 +18,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     private val dataBaseHelper = DataBaseHelper()
 
-    override fun onItemClick(nameItem: String?) {
-        val intent = Intent(this, ChapterActivity::class.java)
-        intent.putExtra("nameBook", nameItem)
-        startActivity(intent)
-    }
-
-    override fun onItemDelete(nameBook: String?, position: Int) {
-       dataBaseHelper.deleteBook(nameBook)
-
-        val adapter = rvAllBooks.adapter as AllBookAdapter
-        adapter.removeAt(position)
-    }
-
     companion object {
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
@@ -41,10 +28,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         setSupportActionBar(tbAllBooks)
 
         Realm.init(this)
-
-//        очистить бд
-//        val realm = Realm.getDefaultInstance()
-//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
 
         if (dataBaseHelper.loadBooks().isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
 
@@ -61,14 +44,25 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
 
             tvNoBooks.visibility = View.INVISIBLE
-
             val book = data?.extras?.getParcelable<Book>("newBook")
-
             dataBaseHelper.saveBook(book)
 
             val adapter = rvAllBooks.adapter as AllBookAdapter
             adapter.insertItem(book)
         }
+    }
+
+    override fun onItemClick(nameItem: String?) {
+        val intent = Intent(this, ChapterActivity::class.java)
+        intent.putExtra("nameBook", nameItem)
+        startActivity(intent)
+    }
+
+    override fun onItemDelete(nameBook: String?, position: Int) {
+        dataBaseHelper.deleteBook(nameBook)
+
+        val adapter = rvAllBooks.adapter as AllBookAdapter
+        adapter.removeAt(position)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,6 +72,9 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
 }
 
+//        очистить бд
+//        val realm = Realm.getDefaultInstance()
+//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
 
 //      сбросить конфигурацию
 //        val config = RealmConfiguration.Builder()
