@@ -55,6 +55,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         notifyItemInserted(0)
     }
 
+
 //    fun removeAt(position: Int) {
 //        booksArray.removeAt(position)
 //        notifyItemRemoved(position)

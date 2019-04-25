@@ -62,6 +62,8 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         else {
             val chapter = Chapter(name = etNameNewChapter.text.toString())
 
+            etNameNewChapter.text = null
+
             val adapter = rvChapter.adapter as ChapterAdapter
             adapter.insertItem(chapter)
 

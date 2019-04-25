@@ -9,7 +9,9 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.models.BookRealm
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 
@@ -35,15 +37,11 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         Realm.init(this)
 
-        // сбросить конфигурацию
-//        val config = RealmConfiguration.Builder()
-//         .deleteRealmIfMigrationNeeded()
-//            .build()
-//       Realm.setDefaultConfiguration(config)
-
-        // очистить бд
-//               val realm = Realm.getDefaultInstance()
+//        очистить бд
+//        val realm = Realm.getDefaultInstance()
 //        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
+
+        if (dataBaseHelper.loadBooks().isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
         rvAllBooks.adapter = AllBookAdapter(dataBaseHelper.loadBooks(), this)
@@ -58,6 +56,8 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
+
+            tvNoBooks.visibility = View.INVISIBLE
 
             val book = data?.extras?.getParcelable<Book>("newBook")
 
@@ -74,3 +74,13 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     }
 }
 
+
+// сбросить конфигурацию
+//        val config = RealmConfiguration.Builder()
+//         .deleteRealmIfMigrationNeeded()
+//            .build()
+//       Realm.setDefaultConfiguration(config)
+
+// очистить бд
+//               val realm = Realm.getDefaultInstance()
+//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }

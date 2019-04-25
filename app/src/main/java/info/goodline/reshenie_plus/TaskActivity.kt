@@ -57,6 +57,8 @@ class TaskActivity : AppCompatActivity() {
         else {
             val task = Task(number = etNumberNewTask.text.toString().toInt())
 
+            etNumberNewTask.text = null
+
             val adapter = rvTask.adapter as TaskAdapter
             adapter.insertItem(task)
 
