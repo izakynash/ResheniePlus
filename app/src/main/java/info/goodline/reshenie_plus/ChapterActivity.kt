@@ -8,13 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import info.goodline.reshenie_plus.extensions.map2Data
 import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
 import info.goodline.reshenie_plus.models.Chapter
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_chapter.*
-
 
 class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener {
 
@@ -38,12 +34,7 @@ class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener 
         val nameBook = intent?.extras?.get("nameBook").toString()
         tvNameBookUp.text = nameBook
 
-        Realm.getDefaultInstance().use { realm ->
-            val results = realm
-                .where(BookRealm::class.java).equalTo("name", nameBook)
-                .findFirst()
-            book = realm.copyFromRealm(results)?.map2Data()
-        }
+        book = dataBaseHelper.loadBookByName(nameBook)
 
         rvChapter.layoutManager = LinearLayoutManager(this)
         rvChapter.adapter = ChapterAdapter(book?.chapters, this)

@@ -63,6 +63,8 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
         val adapter = rvAllBooks.adapter as AllBookAdapter
         adapter.removeAt(position)
+
+        if (dataBaseHelper.loadBooks().isEmpty()) tvNoBooks.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

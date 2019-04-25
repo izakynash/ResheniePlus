@@ -16,8 +16,6 @@ import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_task.*
 import android.support.v7.widget.GridLayoutManager
 
-
-
 class TaskActivity : AppCompatActivity() {
 
     var chapter: Chapter? = null
@@ -29,7 +27,6 @@ class TaskActivity : AppCompatActivity() {
         setContentView(R.layout.activity_task)
         setSupportActionBar(tbTask)
         tbTask.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        Log.d(TAG, "Task_onCreate")
 
         val nameBook = intent?.extras?.getString("nameBook")
         val nameChapter =  intent?.extras?.getString("nameChapter")
@@ -37,14 +34,15 @@ class TaskActivity : AppCompatActivity() {
         tvTaskNameBookUpTask.text = nameBook
         tvNameСhapterUpTask.text = nameChapter
 
-        Realm.getDefaultInstance().use { realm ->
-            val results = realm
-                .where(ChapterRealm::class.java).equalTo("name", nameChapter)
-                .findFirst()
-            chapter = realm.copyFromRealm(results)?.map2Data()
-        }
+        chapter = dataBaseHelper.loadChapterByName(nameChapter)
 
-        //rvTask.layoutManager = LinearLayoutManager(this)
+//        Realm.getDefaultInstance().use { realm ->
+//            val results = realm
+//                .where(ChapterRealm::class.java).equalTo("name", nameChapter)
+//                .findFirst()
+//            chapter = realm.copyFromRealm(results)?.map2Data()
+//        }
+
         rvTask.layoutManager = GridLayoutManager(this, 4)
         rvTask.adapter = TaskAdapter(chapter?.tasks)
     }

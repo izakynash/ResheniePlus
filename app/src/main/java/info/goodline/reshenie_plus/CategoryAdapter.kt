@@ -6,12 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import info.goodline.reshenie_plus.extensions.map2Realm
 import info.goodline.reshenie_plus.models.Category
-import info.goodline.reshenie_plus.models.CategoryRealm
-import info.goodline.reshenie_plus.models.Migration
-import io.realm.Realm
-import io.realm.RealmConfiguration
 
 class CategoryAdapter(private val categoryList: MutableList<Category>, private val clickListener: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
 
