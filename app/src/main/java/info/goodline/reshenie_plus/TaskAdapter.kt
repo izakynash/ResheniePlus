@@ -31,7 +31,7 @@ class TaskAdapter(private val taskNumberArray: MutableList<Task>?): RecyclerView
     }
 
     fun insertItem(item: Task) {
-        taskNumberArray?.add(0, item)
-        notifyItemInserted(0)
+        taskNumberArray?.add(item)
+        notifyItemInserted(taskNumberArray!!.size-1)
     }
 }

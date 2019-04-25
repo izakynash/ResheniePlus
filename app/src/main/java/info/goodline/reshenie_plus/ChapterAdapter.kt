@@ -9,9 +9,9 @@ import android.widget.TextView
 import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.Chapter
 
-class ChapterAdapter(private val bookNameArray: MutableList<Chapter>?, private val clickListener: ChapterActivity): RecyclerView.Adapter<ChapterAdapter.ChapterVH>() {
+class ChapterAdapter(private val chapterArray: MutableList<Chapter>?, private val clickListener: ChapterActivity): RecyclerView.Adapter<ChapterAdapter.ChapterVH>() {
 
-    override fun getItemCount() = bookNameArray!!.size
+    override fun getItemCount() = chapterArray!!.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): ChapterVH {
         val itemView = LayoutInflater.from(viewGroup.context)
@@ -20,7 +20,7 @@ class ChapterAdapter(private val bookNameArray: MutableList<Chapter>?, private v
     }
 
     override fun onBindViewHolder(chapterVH: ChapterVH, position: Int) {
-        val chapter = bookNameArray!![position]
+        val chapter = chapterArray!![position]
         chapterVH.tvChapterVH?.text = chapter.name
 
         chapterVH.itemView.setOnClickListener {
@@ -36,7 +36,7 @@ class ChapterAdapter(private val bookNameArray: MutableList<Chapter>?, private v
     }
 
     fun insertItem(item: Chapter) {
-        bookNameArray?.add(0, item)
-        notifyItemInserted(0)
+        chapterArray?.add(item)
+        notifyItemInserted(chapterArray!!.size-1)
     }
 }

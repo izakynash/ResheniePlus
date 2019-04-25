@@ -9,16 +9,14 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 
 const val TAG = "LOOK"
 class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-    val dataBaseHelper = DataBaseHelper()
+    private val dataBaseHelper = DataBaseHelper()
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent(this, ChapterActivity::class.java)
@@ -75,12 +73,10 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 }
 
 
-// сбросить конфигурацию
+//      сбросить конфигурацию
 //        val config = RealmConfiguration.Builder()
 //         .deleteRealmIfMigrationNeeded()
-//            .build()
+//         .build()
 //       Realm.setDefaultConfiguration(config)
 
-// очистить бд
-//               val realm = Realm.getDefaultInstance()
-//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
+
