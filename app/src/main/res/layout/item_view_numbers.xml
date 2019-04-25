@@ -1,41 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="48dp"
     android:background="#ffffff"
     >
 
     <TextView
-        android:id="@+id/tvNumber"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="4dp"
+        android:id="@+id/tvNumberItem"
+        android:layout_width="wrap_content"
+        android:layout_height="47dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
         android:text="1"
         android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/tvNumber2"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="4dp"
-        android:text="1"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tvNumber3"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="4dp"
-        android:text="1"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/tvNumber4"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="4dp"
-        android:text="1"
-        android:textSize="16sp" />
-
+    <View
+        android:layout_width="52dp"
+        android:layout_height="1dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#c7c7c7"/>
 
 </LinearLayout>

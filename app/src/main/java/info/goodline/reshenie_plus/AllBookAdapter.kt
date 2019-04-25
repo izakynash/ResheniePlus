@@ -18,7 +18,6 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
     override fun getItemCount() = booksArray.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): AllBooksVH {
-        Log.d(TAG, "onCreateViewHolder")
         val itemViewBooks =
             LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_books, viewGroup, false)
         return AllBooksVH(itemViewBooks)
@@ -30,11 +29,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         allBooksVH.tvNameBookVH?.text = book?.name
         allBooksVH.tvDescribeVH?.text = book?.describtion
         allBooksVH.tvLinkVH?.text = book?.link
-        // временно на новые книжки ставим общую рабочую картинку:
-        if (position > 1) allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
-        else allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
-
-        Log.d(TAG, "onBindViewHolder")
+        allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
 
         allBooksVH.itemView.setOnClickListener {
             clickListener.onItemClick(book?.name)
@@ -57,36 +52,33 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
 
     fun insertItem(item: Book?) {
         booksArray.add(0, item)
-        Log.d(TAG, "insert")
         notifyItemInserted(0)
-        Log.d(TAG, "notify")
     }
 
-    fun removeAt(position: Int) {
-        booksArray.removeAt(position)
-        notifyItemRemoved(position)
-    }
-
-    fun updateItemChat(item: Book) {
-        // Проверяем есть ли такой элемент в списке
-        if (!booksArray.contains(item)) {
-            // Если нет то ничего не обновлять
-            return
-        }
-        // Если есть, то обновить его
-        val positionItem = booksArray.indexOf(item)
-        booksArray[positionItem] = item
-        notifyItemChanged(positionItem)
-    }
-
-    fun getItemChat(position: Int): Book? {
-        if (position >= itemCount) {
-            return null
-        }
-
-        return booksArray[position]
-    }
-
+//    fun removeAt(position: Int) {
+//        booksArray.removeAt(position)
+//        notifyItemRemoved(position)
+//    }
+//
+//    fun updateItemChat(item: Book) {
+//        // Проверяем есть ли такой элемент в списке
+//        if (!booksArray.contains(item)) {
+//            // Если нет то ничего не обновлять
+//            return
+//        }
+//        // Если есть, то обновить его
+//        val positionItem = booksArray.indexOf(item)
+//        booksArray[positionItem] = item
+//        notifyItemChanged(positionItem)
+//    }
+//
+//    fun getItemChat(position: Int): Book? {
+//        if (position >= itemCount) {
+//            return null
+//        }
+//
+//        return booksArray[position]
+//    }
 
 }
 

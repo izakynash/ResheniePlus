@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 
@@ -29,8 +28,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     companion object {
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
-
-    // var bookList: MutableList<Book?> = DataBaseHelper.bookList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +59,6 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            Log.d(TAG, "onActivityResult")
 
             val book = data?.extras?.getParcelable<Book>("newBook")
 

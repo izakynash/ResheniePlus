@@ -41,7 +41,6 @@ class ChapterActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener 
         setContentView(R.layout.activity_chapter)
         setSupportActionBar(tbChapter)
         tbChapter.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        Log.d(TAG, "Chapter_onCreate")
 
         val nameBook = intent?.extras?.get("nameBook").toString()
         tvNameBookUp.text = nameBook

@@ -14,8 +14,7 @@ class TaskAdapter(private val taskNumberArray: MutableList<Task>?): RecyclerView
     override fun getItemCount() = taskNumberArray!!.size
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewInt: Int): TaskVH {
-        Log.d(TAG, "Task_onCreateViewHolder")
-        val itemView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_simple_list, viewGroup, false)
+        val itemView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_view_numbers, viewGroup, false)
         return TaskVH(itemView)
     }
 
@@ -27,14 +26,12 @@ class TaskAdapter(private val taskNumberArray: MutableList<Task>?): RecyclerView
     class TaskVH (itemView: View?): RecyclerView.ViewHolder(itemView) {
         var tvTaskVH: TextView? = null
         init {
-            tvTaskVH = itemView?.findViewById(R.id.tvNameItem)
+            tvTaskVH = itemView?.findViewById(R.id.tvNumberItem)
         }
     }
 
     fun insertItem(item: Task) {
         taskNumberArray?.add(0, item)
-        Log.d(TAG, "insert")
         notifyItemInserted(0)
-        Log.d(TAG, "notify")
     }
 }
