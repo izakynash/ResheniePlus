@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_all_books.*
 
@@ -25,9 +24,11 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         startActivity(intent)
     }
 
-    override fun onItemDelete(nameBook: String?) {
+    override fun onItemDelete(nameBook: String?, position: Int) {
        dataBaseHelper.deleteBook(nameBook)
-        Log.d(TAG, "onItemDelete")
+
+        val adapter = rvAllBooks.adapter as AllBookAdapter
+        adapter.removeAt(position)
     }
 
     companion object {

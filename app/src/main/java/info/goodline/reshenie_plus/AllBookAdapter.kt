@@ -14,7 +14,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
 
     interface onItemClickListener {
         fun onItemClick(nameItem: String?)
-        fun onItemDelete(nameBook: String?)
+        fun onItemDelete(nameBook: String?, position: Int)
     }
 
     override fun getItemCount() = booksArray.size
@@ -38,7 +38,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
         }
 
         allBooksVH.btnDeleteBookVH?.setOnClickListener {
-            clickListener.onItemDelete(book?.name)
+            clickListener.onItemDelete(book?.name, position)
         }
     }
 
@@ -64,10 +64,10 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
     }
 
 
-//    fun removeAt(position: Int) {
-//        booksArray.removeAt(position)
-//        notifyItemRemoved(position)
-//    }
+    fun removeAt(position: Int) {
+        booksArray.removeAt(position)
+        notifyItemRemoved(position)
+    }
 //
 //    fun updateItemChat(item: Book) {
 //        // Проверяем есть ли такой элемент в списке
