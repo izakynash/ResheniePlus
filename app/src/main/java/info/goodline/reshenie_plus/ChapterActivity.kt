@@ -8,13 +8,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import info.goodline.reshenie_plus.Providers.BookDBProvider
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
+import info.goodline.reshenie_plus.Providers.ChapterDBProvider
 import info.goodline.reshenie_plus.models.Book
 import info.goodline.reshenie_plus.models.Chapter
 import kotlinx.android.synthetic.main.activity_chapter.*
 
 class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener {
 
-    private val dataBaseHelper = DataBaseHelper()
+    private val bookProvider = BookDBProvider()
 
     var book: Book? = null
 
@@ -34,7 +37,7 @@ class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener 
         val nameBook = intent?.extras?.get("nameBook").toString()
         tvNameBookUp.text = nameBook
 
-        book = dataBaseHelper.loadBookByName(nameBook)
+        book = bookProvider.loadBookByName(nameBook)
 
         rvChapter.layoutManager = LinearLayoutManager(this)
         rvChapter.adapter = ChapterAdapter(book?.chapters, this)
@@ -51,7 +54,7 @@ class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener 
             val adapter = rvChapter.adapter as ChapterAdapter
             adapter.insertItem(chapter)
 
-            dataBaseHelper.saveBook(book)
+            bookProvider.saveBook(book)
         }
     }
 

@@ -5,18 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.View
+import info.goodline.reshenie_plus.Providers.BookDBProvider
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
 import info.goodline.reshenie_plus.models.Book
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_all_books.*
-
 
 const val TAG = "LOOK"
 class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-    private val dataBaseHelper = DataBaseHelper()
+    private val bookProvider = BookDBProvider()
+
+    private val loadBooks =  bookProvider.loadBooks()
 
     companion object {
         const val REQUEST_CODE_EDIT_BOOK = 1
@@ -27,12 +28,11 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(tbAllBooks)
 
-        Realm.init(this)
 
-        if (dataBaseHelper.loadBooks().isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
+        if (loadBooks.isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(dataBaseHelper.loadBooks(), this)
+        rvAllBooks.adapter = AllBookAdapter(loadBooks, this)
     }
 
     fun btnEditBook(view: View) {
@@ -45,7 +45,7 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
             tvNoBooks.visibility = View.INVISIBLE
             val book = data?.extras?.getParcelable<Book>("newBook")
-            dataBaseHelper.saveBook(book)
+            bookProvider.saveBook(book)
 
             val adapter = rvAllBooks.adapter as AllBookAdapter
             adapter.insertItem(book)
@@ -59,12 +59,12 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
     }
 
     override fun onItemDelete(nameBook: String?, position: Int) {
-        dataBaseHelper.deleteBook(nameBook)
+        bookProvider.deleteBook(nameBook)
 
         val adapter = rvAllBooks.adapter as AllBookAdapter
         adapter.removeAt(position)
 
-        if (dataBaseHelper.loadBooks().isEmpty()) tvNoBooks.visibility = View.VISIBLE
+        if (loadBooks.isEmpty()) tvNoBooks.visibility = View.VISIBLE
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

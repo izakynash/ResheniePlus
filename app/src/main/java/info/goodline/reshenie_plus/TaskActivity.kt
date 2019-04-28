@@ -2,25 +2,23 @@ package info.goodline.reshenie_plus
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import info.goodline.reshenie_plus.extensions.map2Data
 import info.goodline.reshenie_plus.models.Chapter
-import info.goodline.reshenie_plus.models.ChapterRealm
 import info.goodline.reshenie_plus.models.Task
-import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_task.*
 import android.support.v7.widget.GridLayoutManager
+import info.goodline.reshenie_plus.Providers.BookDBProvider
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
+import info.goodline.reshenie_plus.Providers.ChapterDBProvider
 
 class TaskActivity : AppCompatActivity() {
 
     var chapter: Chapter? = null
 
-    private val dataBaseHelper = DataBaseHelper()
+    private val chapterProvider = ChapterDBProvider()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +32,7 @@ class TaskActivity : AppCompatActivity() {
         tvTaskNameBookUpTask.text = nameBook
         tvNameСhapterUpTask.text = nameChapter
 
-        chapter = dataBaseHelper.loadChapterByName(nameChapter)
+        chapter = chapterProvider.loadChapterByName(nameChapter)
 
 //        Realm.getDefaultInstance().use { realm ->
 //            val results = realm
@@ -58,7 +56,7 @@ class TaskActivity : AppCompatActivity() {
             val adapter = rvTask.adapter as TaskAdapter
             adapter.insertItem(task)
 
-            dataBaseHelper.saveChapter(chapter)
+            chapterProvider.saveChapter(chapter)
         }
     }
 

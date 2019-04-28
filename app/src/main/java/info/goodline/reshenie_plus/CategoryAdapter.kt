@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
 import info.goodline.reshenie_plus.models.Category
 
 class CategoryAdapter(private val categoryList: MutableList<Category>, private val clickListener: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
@@ -27,8 +28,8 @@ class CategoryAdapter(private val categoryList: MutableList<Category>, private v
         val categoryName = categoryList[position]
         bookVH.tvCategoryVH?.text = categoryName.name
 
-        val dataBaseHelper = DataBaseHelper()
-        dataBaseHelper.saveCategory(categoryName)
+        val categoryProvider = CategoryDBProvider()
+        categoryProvider.saveCategory(categoryName)
 
         bookVH.itemView.setOnClickListener {
             clickListener.onItemClick(categoryName.name)

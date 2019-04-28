@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
 import kotlinx.android.synthetic.main.activity_category_list.*
 
 
@@ -28,7 +29,7 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.onItemClickListene
         Log.d(TAG, "onCreate")
 
         rvLayout.layoutManager = LinearLayoutManager(this)
-        rvLayout.adapter = CategoryAdapter(DataBaseHelper.getAllCategory(), this)
+        rvLayout.adapter = CategoryAdapter(CategoryDBProvider.getAllCategory(), this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
