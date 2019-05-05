@@ -30,7 +30,7 @@ class AllBookAdapter(var booksArray: MutableList<Book?>, private val clickListen
 
         allBooksVH.tvNameBookVH?.text = book?.name
         allBooksVH.tvDescribeVH?.text = book?.describtion
-        allBooksVH.tvLinkVH?.text = "Электронная версия книги\n ${book?.link}"
+        allBooksVH.tvLinkVH?.text = "Электронная версия книги:\n ${book?.link}"
         allBooksVH.ivImageVH?.setImageResource(R.drawable.ic_baseline_book)
 
         allBooksVH.itemView.setOnClickListener {

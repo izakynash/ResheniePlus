@@ -11,7 +11,7 @@ import io.realm.annotations.Required
 @RealmClass
 open class ChapterRealm: RealmModel {
     @PrimaryKey
+    var id: Long = 0
     var name: String = ""
-    var id: Int = 0
     var tasks: RealmList<TaskRealm>? = null
 }

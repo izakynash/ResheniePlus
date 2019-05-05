@@ -7,7 +7,7 @@ import io.realm.annotations.RealmClass
 @RealmClass
 open class TaskRealm: RealmModel {
     @PrimaryKey
+    var id: Long = 0
     var number: Int = 0
-    var id: Int = 0
     var count: Int = 0
 }

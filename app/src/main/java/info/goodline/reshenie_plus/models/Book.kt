@@ -3,9 +3,15 @@ package info.goodline.reshenie_plus.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class Book (var id: Int = 0, var name: String, var describtion: String, var link: String, var image: Int = 0, var chapters: MutableList<Chapter>? = null): Parcelable {
+class Book (var id: Long = 0,
+            var name: String?,
+            var describtion: String?,
+            var link: String?,
+            var image: Int = 0,
+            var chapters: MutableList<Chapter>? = null): Parcelable {
+
     constructor(parcel: Parcel) : this(
-        parcel.readInt(),
+        parcel.readLong(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -13,7 +19,7 @@ class Book (var id: Int = 0, var name: String, var describtion: String, var link
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
+        parcel.writeLong(id)
         parcel.writeString(name)
         parcel.writeString(describtion)
         parcel.writeString(link)

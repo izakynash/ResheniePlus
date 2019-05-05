@@ -10,6 +10,9 @@ import android.view.View
 import info.goodline.reshenie_plus.Providers.BookDBProvider
 import info.goodline.reshenie_plus.Providers.CategoryDBProvider
 import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.models.BookRealm
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 const val TAG = "LOOK"
@@ -25,9 +28,14 @@ class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_all_books)
         setSupportActionBar(tbAllBooks)
 
+//        val config = RealmConfiguration.Builder()
+//         .deleteRealmIfMigrationNeeded()
+//         .build()
+//        Realm.setDefaultConfiguration(config)
 
         if (loadBooks.isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
 

@@ -49,7 +49,7 @@ class TaskActivity : AppCompatActivity() {
         if (etNumberNewTask.text.toString() == "")
             Toast.makeText(this, "Введите номер задачи", Toast.LENGTH_SHORT).show()
         else {
-            val task = Task(number = etNumberNewTask.text.toString().toInt())
+            val task = Task(System.currentTimeMillis(), etNumberNewTask.text.toString().toInt())
 
             etNumberNewTask.text = null
 

@@ -10,6 +10,6 @@ import io.realm.annotations.Required
 @RealmClass
 open class CategoryRealm: RealmModel {
     @PrimaryKey
-    var id: Int = 0
+    var id: Long = 0
     var name: String = ""
 }

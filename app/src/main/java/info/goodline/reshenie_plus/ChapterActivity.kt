@@ -47,7 +47,7 @@ class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener 
         if (etNameNewChapter.text.toString() == "")
             Toast.makeText(this, "Введите название главы", Toast.LENGTH_SHORT).show()
         else {
-            val chapter = Chapter(name = etNameNewChapter.text.toString())
+            val chapter = Chapter(System.currentTimeMillis(), etNameNewChapter.text.toString())
 
             etNameNewChapter.text = null
 

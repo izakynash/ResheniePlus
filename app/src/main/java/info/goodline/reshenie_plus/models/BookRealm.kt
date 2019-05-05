@@ -11,10 +11,10 @@ import io.realm.annotations.Required
 @RealmClass
 open class BookRealm: RealmModel {
     @PrimaryKey
-    var name: String = ""
-    var id: Int = 0
-    var description: String = ""
-    var link: String = ""
+    var id: Long = 0
+    var name: String? = ""
+    var description: String? = ""
+    var link: String? = ""
     var image: Int = 0
     var chapters: RealmList<ChapterRealm>? = null
 }
