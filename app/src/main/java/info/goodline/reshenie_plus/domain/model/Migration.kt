@@ -1,7 +1,6 @@
-package info.goodline.reshenie_plus.models
+package info.goodline.reshenie_plus.domain.model
 
 import io.realm.DynamicRealm
-import io.realm.RealmConfiguration
 import io.realm.RealmMigration
 
 class Migration: RealmMigration {

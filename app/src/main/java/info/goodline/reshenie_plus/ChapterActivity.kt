@@ -9,10 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import info.goodline.reshenie_plus.Providers.BookDBProvider
-import info.goodline.reshenie_plus.Providers.CategoryDBProvider
-import info.goodline.reshenie_plus.Providers.ChapterDBProvider
-import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.Chapter
+import info.goodline.reshenie_plus.domain.model.Book
+import info.goodline.reshenie_plus.domain.model.Chapter
 import kotlinx.android.synthetic.main.activity_chapter.*
 
 class ChapterActivity : AppCompatActivity(), ChapterAdapter.onItemClickListener {

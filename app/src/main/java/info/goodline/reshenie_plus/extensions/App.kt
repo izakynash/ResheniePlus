@@ -1,7 +1,7 @@
 package info.goodline.reshenie_plus
 
 import android.support.multidex.MultiDexApplication
-import info.goodline.reshenie_plus.models.Migration
+import info.goodline.reshenie_plus.domain.model.Migration
 import io.realm.Realm
 import io.realm.RealmConfiguration
 

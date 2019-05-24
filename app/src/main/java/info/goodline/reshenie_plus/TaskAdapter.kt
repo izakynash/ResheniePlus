@@ -1,13 +1,11 @@
 package info.goodline.reshenie_plus
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import info.goodline.reshenie_plus.models.Chapter
-import info.goodline.reshenie_plus.models.Task
+import info.goodline.reshenie_plus.domain.model.Task
 
 class TaskAdapter(private val taskNumberArray: MutableList<Task>?): RecyclerView.Adapter<TaskAdapter.TaskVH>() {
 

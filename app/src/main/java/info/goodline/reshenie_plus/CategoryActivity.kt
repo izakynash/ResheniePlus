@@ -9,10 +9,16 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import info.goodline.reshenie_plus.Providers.CategoryDBProvider
+import info.goodline.reshenie_plus.domain.model.repositories.categoryPReSENTATION.CategoryListPresenter
+import info.goodline.reshenie_plus.domain.model.repositories.categoryPReSENTATION.ICategoryView
 import kotlinx.android.synthetic.main.activity_category_list.*
 
 
-class CategoryActivity : AppCompatActivity(), CategoryAdapter.onItemClickListener {
+class CategoryActivity : AppCompatActivity(), CategoryAdapter.onItemClickListener, ICategoryView {
+
+    lateinit var presenter
+
+    // здесь будут методы из интрефейса, мы их переопределяем и пишем в них логику
 
     override fun onItemClick(nameItem: String?) {
         val intent = Intent()
@@ -28,7 +34,13 @@ class CategoryActivity : AppCompatActivity(), CategoryAdapter.onItemClickListene
         toolbarCategory.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         Log.d(TAG, "onCreate")
 
+        presenter = CategoryListPresenter()
+        presenter = this
+
+
+
         rvLayout.layoutManager = LinearLayoutManager(this)
+        // наверное, нужно запустить ажапетр из Presenter
         rvLayout.adapter = CategoryAdapter(CategoryDBProvider.getAllCategory(), this)
     }
 

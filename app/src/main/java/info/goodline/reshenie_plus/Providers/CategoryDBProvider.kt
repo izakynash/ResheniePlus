@@ -3,8 +3,8 @@ package info.goodline.reshenie_plus.Providers
 import android.util.Log
 import info.goodline.reshenie_plus.TAG
 import info.goodline.reshenie_plus.extensions.map2Realm
-import info.goodline.reshenie_plus.models.Category
-import info.goodline.reshenie_plus.models.CategoryRealm
+import info.goodline.reshenie_plus.domain.model.model.Category
+import info.goodline.reshenie_plus.domain.model.model.CategoryRealm
 import io.realm.Realm
 
 class CategoryDBProvider {

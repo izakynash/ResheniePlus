@@ -8,11 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.View
 import info.goodline.reshenie_plus.Providers.BookDBProvider
-import info.goodline.reshenie_plus.Providers.CategoryDBProvider
-import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
-import io.realm.Realm
-import io.realm.RealmConfiguration
+import info.goodline.reshenie_plus.domain.model.Book
 import kotlinx.android.synthetic.main.activity_all_books.*
 
 const val TAG = "LOOK"

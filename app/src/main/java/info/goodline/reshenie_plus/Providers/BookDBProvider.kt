@@ -5,8 +5,8 @@ import info.goodline.reshenie_plus.TAG
 import info.goodline.reshenie_plus.extensions.map2Data
 import info.goodline.reshenie_plus.extensions.map2DataList
 import info.goodline.reshenie_plus.extensions.map2Realm
-import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
+import info.goodline.reshenie_plus.domain.model.Book
+import info.goodline.reshenie_plus.domain.model.model.BookRealm
 import io.realm.Realm
 
 class BookDBProvider {

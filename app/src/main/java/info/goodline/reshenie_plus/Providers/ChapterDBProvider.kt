@@ -4,8 +4,8 @@ import android.util.Log
 import info.goodline.reshenie_plus.TAG
 import info.goodline.reshenie_plus.extensions.map2Data
 import info.goodline.reshenie_plus.extensions.map2Realm
-import info.goodline.reshenie_plus.models.Chapter
-import info.goodline.reshenie_plus.models.ChapterRealm
+import info.goodline.reshenie_plus.domain.model.Chapter
+import info.goodline.reshenie_plus.domain.model.ChapterRealm
 import io.realm.Realm
 
 class ChapterDBProvider {

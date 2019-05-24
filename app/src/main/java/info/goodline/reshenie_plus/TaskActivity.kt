@@ -6,12 +6,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import info.goodline.reshenie_plus.models.Chapter
-import info.goodline.reshenie_plus.models.Task
+import info.goodline.reshenie_plus.domain.model.Chapter
+import info.goodline.reshenie_plus.domain.model.Task
 import kotlinx.android.synthetic.main.activity_task.*
 import android.support.v7.widget.GridLayoutManager
-import info.goodline.reshenie_plus.Providers.BookDBProvider
-import info.goodline.reshenie_plus.Providers.CategoryDBProvider
 import info.goodline.reshenie_plus.Providers.ChapterDBProvider
 
 class TaskActivity : AppCompatActivity() {

@@ -1,9 +1,7 @@
 package info.goodline.reshenie_plus.extensions
 
-import info.goodline.reshenie_plus.models.Chapter
-import info.goodline.reshenie_plus.models.ChapterRealm
-import info.goodline.reshenie_plus.models.Task
-import info.goodline.reshenie_plus.models.TaskRealm
+import info.goodline.reshenie_plus.domain.model.Task
+import info.goodline.reshenie_plus.domain.model.TaskRealm
 import io.realm.RealmList
 
 fun TaskRealm.map2Data() = Task (this.id, this.number, this.count)

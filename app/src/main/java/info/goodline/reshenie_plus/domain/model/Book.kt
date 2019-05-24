@@ -1,4 +1,4 @@
-package info.goodline.reshenie_plus.models
+package info.goodline.reshenie_plus.domain.model
 
 import android.os.Parcel
 import android.os.Parcelable

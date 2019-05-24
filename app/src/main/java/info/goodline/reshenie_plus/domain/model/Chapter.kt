@@ -1,4 +1,4 @@
-package info.goodline.reshenie_plus.models
+package info.goodline.reshenie_plus.domain.model
 
 data class Chapter (var id: Long,
                     var name: String,

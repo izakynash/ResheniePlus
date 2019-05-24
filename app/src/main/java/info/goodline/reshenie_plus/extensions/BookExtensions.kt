@@ -1,7 +1,7 @@
 package info.goodline.reshenie_plus.extensions
 
-import info.goodline.reshenie_plus.models.Book
-import info.goodline.reshenie_plus.models.BookRealm
+import info.goodline.reshenie_plus.domain.model.Book
+import info.goodline.reshenie_plus.domain.model.model.BookRealm
 import io.realm.RealmList
 
 fun BookRealm.map2Data() = Book (this.id, this.name, this.description, this.link, this.image, this.chapters?.map2DataList())

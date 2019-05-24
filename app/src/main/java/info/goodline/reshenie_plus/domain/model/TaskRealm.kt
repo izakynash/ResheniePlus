@@ -1,4 +1,4 @@
-package info.goodline.reshenie_plus.models
+package info.goodline.reshenie_plus.domain.model
 
 import io.realm.RealmModel
 import io.realm.annotations.PrimaryKey

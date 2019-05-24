@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
-import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.domain.model.Book
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 

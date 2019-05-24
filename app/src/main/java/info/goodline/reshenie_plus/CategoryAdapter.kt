@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import info.goodline.reshenie_plus.Providers.CategoryDBProvider
-import info.goodline.reshenie_plus.models.Category
+import info.goodline.reshenie_plus.domain.model.model.Category
 
 class CategoryAdapter(private val categoryList: MutableList<Category>, private val clickListener: CategoryActivity): RecyclerView.Adapter<CategoryAdapter.BookVH>() {
 

@@ -1,6 +1,6 @@
 package info.goodline.reshenie_plus.extensions
 
-import info.goodline.reshenie_plus.models.*
+import info.goodline.reshenie_plus.domain.model.*
 import io.realm.RealmList
 
 fun ChapterRealm.map2Data() = Chapter (this.id, this.name, this.tasks?.map2DataList())
