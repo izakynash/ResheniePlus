@@ -10,7 +10,7 @@
     tools:context=".AllBooksActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/tbAllBooks"
         style="@style/Toolbar"
         app:title="Решение+"
         android:layout_marginLeft="8dp"
@@ -19,11 +19,21 @@
         app:titleTextColor="#000000"
         />
 
+    <TextView
+        android:id="@+id/tvNoBooks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Книг нет :("
+        android:textSize="24dp"
+        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvAllBooks"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="?attr/actionBarSize" />
+
 
         <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

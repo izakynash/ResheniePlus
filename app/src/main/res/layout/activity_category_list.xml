@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".CategoryListActivity">
+    tools:context=".CategoryActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbarCategory"
@@ -23,6 +23,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvLayout"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >

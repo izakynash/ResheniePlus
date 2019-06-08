@@ -2,67 +2,94 @@ package info.goodline.reshenie_plus
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
-import android.view.*
+import android.view.Menu
+import android.view.View
+import info.goodline.reshenie_plus.Providers.BookDBProvider
+import info.goodline.reshenie_plus.Providers.CategoryDBProvider
+import info.goodline.reshenie_plus.models.Book
+import info.goodline.reshenie_plus.models.BookRealm
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import kotlinx.android.synthetic.main.activity_all_books.*
-import java.util.*
 
+const val TAG = "LOOK"
+class AllBooksActivity : AppCompatActivity(), AllBookAdapter.onItemClickListener {
 
-class AllBooksActivity : AppCompatActivity() {
+    private val bookProvider = BookDBProvider()
 
-    private val TAG: String = "SOLO"
+    private val loadBooks =  bookProvider.loadBooks()
 
     companion object {
         const val REQUEST_CODE_EDIT_BOOK = 1
     }
 
-    var booksArray: List<Books?> = Arrays.asList(
-        Books(
-            "Информатика: Теория, вычисления, программирование",
-            "Учебное пособие для практических и лабораторных работ для студентов вузов / Т.П. Крюкова, И.А. Печерских",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii105.pdf",
-            R.drawable.book1
-        ),
-        Books(
-            "Информатика. Программирование в системе Turbo  Pascal",
-            "Практикум / Г.Е. Иванец, О.А. Ивина; Кемеровский технологический институт пищевой промышленности",
-            "Электронная версия книги:\nhttp://e-lib.kemtipp.ru/uploads/29/pmii106.pdf",
-            R.drawable.book2
-        )
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_all_books)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(tbAllBooks)
+
+//        val config = RealmConfiguration.Builder()
+//         .deleteRealmIfMigrationNeeded()
+//         .build()
+//        Realm.setDefaultConfiguration(config)
+
+        if (loadBooks.isNotEmpty()) tvNoBooks.visibility = View.INVISIBLE
 
         rvAllBooks.layoutManager = LinearLayoutManager(this)
-        rvAllBooks.adapter = AllBookAdapter(booksArray)
-
-        Log.d(TAG, "onCreate")
+        rvAllBooks.adapter = AllBookAdapter(loadBooks, this)
     }
 
     fun btnEditBook(view: View) {
-        val intent = Intent(this, EditBookActivity::class.java) // intent с явным указанием на активити
+        val intent = Intent(this, EditBookActivity::class.java)
         startActivityForResult(intent, REQUEST_CODE_EDIT_BOOK)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (resultCode == Activity.RESULT_OK && requestCode == 1) {
-            Log.d(TAG, "onActivityResult")
-            val book: Books? = data?.extras?.getParcelable<Books>("newBook")
 
-            booksArray = booksArray.plus(book)
-            rvAllBooks.adapter = AllBookAdapter(booksArray)
+            tvNoBooks.visibility = View.INVISIBLE
+            val book = data?.extras?.getParcelable<Book>("newBook")
+            bookProvider.saveBook(book)
+
+            val adapter = rvAllBooks.adapter as AllBookAdapter
+            adapter.insertItem(book)
         }
     }
 
+    override fun onItemClick(nameItem: String?) {
+        val intent = Intent(this, ChapterActivity::class.java)
+        intent.putExtra("nameBook", nameItem)
+        startActivity(intent)
+    }
+
+    override fun onItemDelete(nameBook: String?, position: Int) {
+        bookProvider.deleteBook(nameBook)
+
+        val adapter = rvAllBooks.adapter as AllBookAdapter
+        adapter.removeAt(position)
+
+        if (loadBooks.isEmpty()) tvNoBooks.visibility = View.VISIBLE
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.all_books_menu, menu)
+        menuInflater.inflate(R.menu.menu_with_account, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
 }
+
+//        очистить бд
+//        val realm = Realm.getDefaultInstance()
+//        realm.executeTransaction { realm -> realm.delete(BookRealm::class.java) }
+
+//      сбросить конфигурацию
+//        val config = RealmConfiguration.Builder()
+//         .deleteRealmIfMigrationNeeded()
+//         .build()
+//       Realm.setDefaultConfiguration(config)
+
 

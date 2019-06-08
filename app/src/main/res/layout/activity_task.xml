@@ -1,0 +1,111 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".TaskActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tbTask"
+        style="@style/Toolbar"
+        app:title="Выберите задание"
+        android:layout_marginEnd="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#000000"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c7c7c7"/>
+
+    <TextView
+        android:id="@+id/tvTaskNameBookUpTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12sp"
+        android:text="название книжки"
+        android:lineSpacingMultiplier="1.4"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c7c7c7"/>
+
+    <TextView
+        android:id="@+id/tvNameСhapterUpTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="12sp"
+        android:text="название главы"
+        android:lineSpacingMultiplier="1.4"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c7c7c7"/>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvTask"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_columnWeight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+    </GridLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        >
+
+        <EditText
+            android:id="@+id/etNumberNewTask"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_height="60dp"
+            android:digits="0123456789."
+            android:inputType="numberDecimal"
+            android:hint="Добавить новую задачу"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="ДОБАВИТЬ"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:onClick="btnAddTask"
+        android:background="@drawable/border_shadow_mini"
+        />
+
+</LinearLayout>

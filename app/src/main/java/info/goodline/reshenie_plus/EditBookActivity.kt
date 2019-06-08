@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import info.goodline.reshenie_plus.models.Book
 import kotlinx.android.synthetic.main.activity_edit_book.*
 
 
@@ -34,18 +35,19 @@ class EditBookActivity: AppCompatActivity() {
         if (etNameBook.text.toString() == "" || etDescribe.text.toString() == ""  || etLink.text.toString() == "" || etCategory.text.toString() == "")
             Toast.makeText(this, "Заполнены не все поля", LENGTH_SHORT).show()
         else {
-            val books = Books(etNameBook.text.toString(), etDescribe.text.toString(), etLink.text.toString(), null)
+            val books = Book(name = etNameBook.text.toString(), describtion = etDescribe.text.toString(), link = etLink.text.toString())
+            Log.d(TAG, "btnSave1")
+
             val intent = Intent()
             intent.putExtra("newBook", books)
             setResult(Activity.RESULT_OK, intent)
-            Log.d(TAG, "btnSave")
             finish()
         }
     }
 
     fun btnCategory(view: View) {
-        val intent = Intent(this, CategoryListActivity::class.java)
-        startActivityForResult(intent, EditBookActivity.REQUEST_CODE_CATEGORY)
+        val intent = Intent(this, CategoryActivity::class.java)
+        startActivityForResult(intent, REQUEST_CODE_CATEGORY)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

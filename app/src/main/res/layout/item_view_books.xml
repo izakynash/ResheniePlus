@@ -58,15 +58,23 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_below="@id/tvDescribe"
-        android:layout_toRightOf="@id/ivImage"
+        android:layout_toEndOf="@id/ivImage"
         android:layout_marginStart="12dp"
-        android:layout_marginBottom="12dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:text="Ссылка на электронный вариант"
+        android:text="@string/linkBook"
         android:lineSpacingMultiplier="1.1"
         android:textSize="12sp" />
 
     </RelativeLayout>
+
+        <Button
+            android:id="@+id/btnDeleteBook"
+            android:text="удалить"
+            android:textSize="8dp"
+            android:background="#ffffff"
+            android:layout_width="56dp"
+            android:layout_height="12dp"
+            />
 
 </LinearLayout>
